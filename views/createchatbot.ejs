@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/styles/createchatbot.css">
+
+  <title>Document</title>
+</head>
+<body>
+  
+    <header class="header">
+      <a href="" class="logo">
+        <img height="50" width="50" src="/images/main-logo.svg" alt="">
+      </a>
+      <a href="" class="logo-text">CooChat</a>
+      <input class="menu-btn" type="checkbox" id="menu-btn" />
+      <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+      <ul class="menu">
+        <li><a href="/mybots">ChatBots</a></li>
+        <li><a href="">Help</a></li>
+        <li><a href="">Acount</a></li>
+      </ul>
+    </header>
+
+    <div class="background-div">
+        <div class="text-div" style="margin-top: 90px;">
+            <h1>Train your Bot</h1>
+            <p>Add data source to train your ChatBot</p>
+        </div>
+
+        <div class="data-for-bot-div">
+            <div class="data-type-select">
+                <div onclick="setOption(1)" id="files-import-option" class="import-option-div">
+                    <svg class="option-icon" id="aa" width="20" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M370.183 394.181H141.818V416.001H370.183V394.181Z" fill="#000000"/>
+                        <path d="M370.183 305.688H141.818V327.508H370.183V305.688Z" fill="#000000"/>
+                        <path d="M370.183 217.203H141.818V239.03H370.183V217.203Z" fill="#000000"/>
+                        <path d="M370.182 128.725H262.546V150.545H370.182V128.725Z" fill="#000000"/>
+                        <path d="M411.626 0H222.758C209.199 0 196.194 5.39 186.606 14.969L68.794 132.788C59.204 142.375 53.818 155.384 53.818 168.944V465.444C53.818 491.114 74.707 512 100.378 512H411.625C437.292 512 458.181 491.114 458.181 465.444V46.542C458.182 20.878 437.292 0 411.626 0ZM206.252 32.349V137.001C206.252 148.314 201.847 152.723 190.534 152.723H85.877L206.252 32.349ZM432.002 465.444C432.002 476.681 422.856 485.816 411.626 485.816H100.378C89.141 485.816 79.998 476.681 79.998 465.444V175.998H204.552C218.322 175.998 229.53 164.791 229.53 151.013V26.184H411.626C422.856 26.184 432.002 35.311 432.002 46.542V465.444Z" fill="#000000"/>
+                    </svg> 
+                    <svg class="option-icon" id="bb" width="20" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M370.183 394.181H141.818V416.001H370.183V394.181Z" fill="#3ECD87"/>
+                        <path d="M370.183 305.688H141.818V327.508H370.183V305.688Z" fill="#3ECD87"/>
+                        <path d="M370.183 217.203H141.818V239.03H370.183V217.203Z" fill="#3ECD87"/>
+                        <path d="M370.182 128.725H262.546V150.545H370.182V128.725Z" fill="#3ECD87"/>
+                        <path d="M411.626 0H222.758C209.199 0 196.194 5.39 186.606 14.969L68.794 132.788C59.204 142.375 53.818 155.384 53.818 168.944V465.444C53.818 491.114 74.707 512 100.378 512H411.625C437.292 512 458.181 491.114 458.181 465.444V46.542C458.182 20.878 437.292 0 411.626 0ZM206.252 32.349V137.001C206.252 148.314 201.847 152.723 190.534 152.723H85.877L206.252 32.349ZM432.002 465.444C432.002 476.681 422.856 485.816 411.626 485.816H100.378C89.141 485.816 79.998 476.681 79.998 465.444V175.998H204.552C218.322 175.998 229.53 164.791 229.53 151.013V26.184H411.626C422.856 26.184 432.002 35.311 432.002 46.542V465.444Z" fill="#3ECD87"/>
+                    </svg>
+                    
+                    Files
+                </div>
+                <div onclick="setOption(2)" id="text-import-option" class="import-option-div">
+                    <svg class="option-icon" id="cc" width="20" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M400 100V700M300 700H500M633.333 200V100H166.667V200" stroke="black" stroke-width="66.6667" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg class="option-icon" id="dd" width="20" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M400 100V700M300 700H500M633.333 200V100H166.667V200" stroke="#3ECD87" stroke-width="66.6667" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+
+                    Text</div>
+                <div onclick="setOption(3)" id="website-import-option" class="import-option-div">
+                    <svg class="option-icon" id="ee" width="20" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8.516 0c-4.687 0-8.5 3.813-8.5 8.5s3.813 8.5 8.5 8.5 8.5-3.813 8.5-8.5-3.814-8.5-8.5-8.5zM1.041 9h2.937c0.044 1.024 0.211 2.031 0.513 3h-2.603c-0.481-0.906-0.776-1.923-0.847-3zM3.978 8h-2.937c0.071-1.077 0.366-2.094 0.847-3h2.6c-0.301 0.969-0.467 1.976-0.51 3zM5.547 5h5.896c0.33 0.965 0.522 1.972 0.569 3h-7.034c0.046-1.028 0.239-2.035 0.569-3zM4.978 9h7.035c-0.049 1.028-0.241 2.035-0.572 3h-5.891c-0.331-0.965-0.524-1.972-0.572-3zM13.013 9h2.978c-0.071 1.077-0.366 2.094-0.847 3h-2.644c0.302-0.969 0.469-1.976 0.513-3zM13.013 8c-0.043-1.024-0.209-2.031-0.51-3h2.641c0.48 0.906 0.775 1.923 0.847 3h-2.978zM14.502 4h-2.354c-0.392-0.955-0.916-1.858-1.55-2.7 1.578 0.457 2.938 1.42 3.904 2.7zM9.074 1.028c0.824 0.897 1.484 1.9 1.972 2.972h-5.102c0.487-1.071 1.146-2.073 1.97-2.97 0.199-0.015 0.398-0.030 0.602-0.030 0.188 0 0.373 0.015 0.558 0.028zM6.383 1.313c-0.629 0.838-1.151 1.737-1.54 2.687h-2.314c0.955-1.267 2.297-2.224 3.854-2.687zM2.529 13h2.317c0.391 0.951 0.915 1.851 1.547 2.689-1.561-0.461-2.907-1.419-3.864-2.689zM7.926 15.97c-0.826-0.897-1.488-1.899-1.978-2.97h5.094c-0.49 1.072-1.152 2.075-1.979 2.972-0.181 0.013-0.363 0.028-0.547 0.028-0.2 0-0.395-0.015-0.59-0.030zM10.587 15.703c0.636-0.842 1.164-1.747 1.557-2.703h2.358c-0.968 1.283-2.332 2.247-3.915 2.703z" fill="#000000"></path> </g></svg>
+                    <svg class="option-icon" id="ff" width="20" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8.516 0c-4.687 0-8.5 3.813-8.5 8.5s3.813 8.5 8.5 8.5 8.5-3.813 8.5-8.5-3.814-8.5-8.5-8.5zM1.041 9h2.937c0.044 1.024 0.211 2.031 0.513 3h-2.603c-0.481-0.906-0.776-1.923-0.847-3zM3.978 8h-2.937c0.071-1.077 0.366-2.094 0.847-3h2.6c-0.301 0.969-0.467 1.976-0.51 3zM5.547 5h5.896c0.33 0.965 0.522 1.972 0.569 3h-7.034c0.046-1.028 0.239-2.035 0.569-3zM4.978 9h7.035c-0.049 1.028-0.241 2.035-0.572 3h-5.891c-0.331-0.965-0.524-1.972-0.572-3zM13.013 9h2.978c-0.071 1.077-0.366 2.094-0.847 3h-2.644c0.302-0.969 0.469-1.976 0.513-3zM13.013 8c-0.043-1.024-0.209-2.031-0.51-3h2.641c0.48 0.906 0.775 1.923 0.847 3h-2.978zM14.502 4h-2.354c-0.392-0.955-0.916-1.858-1.55-2.7 1.578 0.457 2.938 1.42 3.904 2.7zM9.074 1.028c0.824 0.897 1.484 1.9 1.972 2.972h-5.102c0.487-1.071 1.146-2.073 1.97-2.97 0.199-0.015 0.398-0.030 0.602-0.030 0.188 0 0.373 0.015 0.558 0.028zM6.383 1.313c-0.629 0.838-1.151 1.737-1.54 2.687h-2.314c0.955-1.267 2.297-2.224 3.854-2.687zM2.529 13h2.317c0.391 0.951 0.915 1.851 1.547 2.689-1.561-0.461-2.907-1.419-3.864-2.689zM7.926 15.97c-0.826-0.897-1.488-1.899-1.978-2.97h5.094c-0.49 1.072-1.152 2.075-1.979 2.972-0.181 0.013-0.363 0.028-0.547 0.028-0.2 0-0.395-0.015-0.59-0.030zM10.587 15.703c0.636-0.842 1.164-1.747 1.557-2.703h2.358c-0.968 1.283-2.332 2.247-3.915 2.703z" fill="#3ECD87"></path> </g></svg>
+
+                    Website</div>
+                <div onclick="setOption(4)" id="question-import-option" class="import-option-div">
+                    <svg class="option-icon" id="gg" width="20" fill="#000000" viewBox="0 0 24 24" id="conversation" data-name="Line Color" xmlns="http://www.w3.org/2000/svg" class="icon line-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path id="secondary" d="M17.85,8.21A6.27,6.27,0,0,1,21,13.5,5.82,5.82,0,0,1,19.85,17L21,21l-4-1.73A8.5,8.5,0,0,1,13.5,20a7.47,7.47,0,0,1-7.11-4.45" style="fill: none; stroke: #000000; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path><path id="primary" d="M18,9.5c0,3.59-3.36,6.5-7.5,6.5A8.5,8.5,0,0,1,7,15.27l-.65.28L3,17l1.15-4A5.82,5.82,0,0,1,3,9.5C3,5.91,6.36,3,10.5,3c3.63,0,6.66,2.24,7.35,5.21A5.49,5.49,0,0,1,18,9.5Z" style="fill: none; stroke: #000000; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path></g></svg>
+                    <svg class="option-icon" id="hh" width="20" fill="#3ECD87" viewBox="0 0 24 24" id="conversation" data-name="Line Color" xmlns="http://www.w3.org/2000/svg" class="icon line-color"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path id="secondary" d="M17.85,8.21A6.27,6.27,0,0,1,21,13.5,5.82,5.82,0,0,1,19.85,17L21,21l-4-1.73A8.5,8.5,0,0,1,13.5,20a7.47,7.47,0,0,1-7.11-4.45" style="fill: none; stroke: #3ECD87; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path><path id="primary" d="M18,9.5c0,3.59-3.36,6.5-7.5,6.5A8.5,8.5,0,0,1,7,15.27l-.65.28L3,17l1.15-4A5.82,5.82,0,0,1,3,9.5C3,5.91,6.36,3,10.5,3c3.63,0,6.66,2.24,7.35,5.21A5.49,5.49,0,0,1,18,9.5Z" style="fill: none; stroke: #3ECD87; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path></g></svg>
+                    Q&A</div>
+            </div>
+            <div class="main-check-div">
+                <div id="files-input-type" class="input-data-type">
+                    <h2 class="type-select-h1">Files</h2>
+                    
+                    <div class="drop-zone" id="drop-zone">
+                        <svg height="80" fill="#3ECD87" viewBox="0 -1.5 35 35" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>upload1</title> <path d="M29.426 15.535c0 0 0.649-8.743-7.361-9.74-6.865-0.701-8.955 5.679-8.955 5.679s-2.067-1.988-4.872-0.364c-2.511 1.55-2.067 4.388-2.067 4.388s-5.576 1.084-5.576 6.768c0.124 5.677 6.054 5.734 6.054 5.734h9.351v-6h-3l5-5 5 5h-3v6h8.467c0 0 5.52 0.006 6.295-5.395 0.369-5.906-5.336-7.070-5.336-7.070z"></path> </g>
+                        </svg>
+                        <span class="drop-zone__prompt">Drop files here</span>or<br>
+                        <input type="file" class="drop-zone__input" id="fileInput" accept=".pdf, .doc, .docx, .txt">
+                        <p style="margin: 10px; color: rgb(114, 114, 114);">Supported File Types: .pdf, .doc, .docx, .txt</p>
+                    </div>
+
+                    <div class="uploaded-files-div" id="uploaded-files-div-id">
+                        
+    
+                    </div>
+
+                </div>
+                <div id="text-input-type" class="input-data-type" >
+                    <h2 class="type-select-h1">Text</h2>
+                    <div class="textarea-div">
+                        <textarea name="" id="textarea-input" ></textarea>
+                        <p id="char-count-text-input">0 characters</p>
+                    </div>
+                </div>
+                <div id="website-input-type" class="input-data-type">
+                    <h2 class="type-select-h1">Website</h2>
+
+                    <label for="">Crawl website</label>
+                    
+                    <input type="text" placeholder="https://example.com">
+
+                </div>
+                <div id="question-input-type" class="input-data-type">
+                    <h2 class="type-select-h1">Q&A</h2>
+
+                </div>
+
+                <div class="confirm-create-div">
+                    <h4 style="text-align: center;">Source</h4>
+                    <p id="file-count-display" style="text-align: left;">0 Files (0 chars)</p>
+                        
+                    <h5 style="text-align: left;">Total detected characters</h5>
+                    <h5 id="total-char-count-display" style="text-align: center;">0 / 400,000 limit</h5>
+
+                    <button id="create-bot-button" onclick="executeCreateBot()">Create ChatBot</button>
+                    <div id="create-progress-bar" class="progress-bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/create-bot.js"></script>
+
+</body>
+</html>

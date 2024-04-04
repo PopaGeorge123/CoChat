@@ -1,0 +1,27 @@
+.scrollmenu {
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
+    overflow: auto;
+    width: 100vw;
+    white-space: nowrap;
+  }
+  
+  
+.scrollmenu a {
+    display: inline-block;
+    color: rgb(129, 129, 129);
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+  }
+.scrollmenu a:hover {
+    color: black;
+  }
+  h1{
+    text-align: center;
+}
+
+p{
+    text-align: center;
+}

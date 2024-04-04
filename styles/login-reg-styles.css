@@ -1,0 +1,102 @@
+body {
+  margin: 0;
+  font-family: Helvetica, sans-serif;
+  
+}
+label{
+  align-self: self-start;
+}
+
+.logo-div{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.logo{
+  display: block;
+  font-size: 1.5em;
+  padding-left:10px;
+  padding-top:10px;
+  text-decoration: none;
+}
+.logo-text{
+  display: block;
+  font-size: 1.5em;
+  padding-left: 10px;
+  padding-top:18px;
+  text-decoration: none;
+  font-family: Kreon;
+  font-weight: bold;
+  color: black;
+}
+
+.main-container{
+  position: relative;
+  margin-top: 100px;
+}
+.main-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.credential-input-field{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  
+  width: 80vw;
+} 
+
+.input-field{
+  margin-top: 8px;
+  border-radius: 5px;
+  border:solid 0.5px rgb(209, 209, 209);
+  padding: 15px;
+  font-size: 15px;
+}
+
+.input-field-pwd{
+  margin-top: 8px;
+  width: 100%;
+  border-radius: 5px;
+  border:solid 0.5px rgb(209, 209, 209);
+  padding: 15px;
+  font-size: 15px;
+}
+
+
+.login-button{
+  margin-top: 60px;
+  width: 100%;
+  border-radius: 5px;
+  border:solid 0.5px rgb(209, 209, 209);
+  background-color: #3ECD87;
+  padding: 15px;
+}
+.svg-show-icon{
+  margin-top: 7px;
+  margin-left: 10px;
+}
+.pwd-div{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.connect-option{
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+}
+
+
+@media (min-width:961px)  { 
+  .credential-input-field{
+    width: 430px;
+  }
+  .input-field{
+    width: 400px;
+  }
+}

@@ -1,0 +1,16 @@
+{
+    "id": "asst_j5lAYMGi4tiiot8lmgb0HLmR",
+    "object": "assistant",
+    "created_at": 1711717833,
+    "name": null,
+    "description": null,
+    "model": "gpt-3.5-turbo",
+    "instructions": "You are a personal assistant.You will answerar kindly based on the content of file uploaded.",
+    "tools": [ 
+        { 
+            "type": "code_interpreter" 
+        } 
+    ],
+    "file_ids": [ "file-WqtmqclEmLfcH86H5CP3Oit0" ],
+    "metadata": {}
+  }

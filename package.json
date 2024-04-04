@@ -1,0 +1,39 @@
+{
+  "name": "login-system-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/translate": "^8.0.3",
+    "@supercharge/fs": "^3.4.2",
+    "@supercharge/strings": "^2.0.0",
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^16.4.0",
+    "ejs": "^3.1.6",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.0",
+    "express-session": "^1.17.1",
+    "google-translate-api": "^2.3.0",
+    "is-word": "^1.0.4",
+    "mongoose": "^5.12.7",
+    "multer": "^1.4.5-lts.1",
+    "openai": "^4.29.2",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "pdf-parse": "^1.1.1",
+    "textract": "^2.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

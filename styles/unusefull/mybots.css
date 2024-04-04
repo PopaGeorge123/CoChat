@@ -1,0 +1,52 @@
+.main-functions-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#new-bot-button{
+    width: 150px;
+    border: solid 0.5px black;
+    background-color: #3ECD87;
+    padding: 6px;
+    border-radius: 5px;
+    color: white;
+    margin-top: 8px;
+}
+.bots-div{
+    width: 80vw;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items:center;
+    margin-top: 40px;
+}
+
+.bot-div{
+    height: 200px;
+    width: 150px;
+    border: solid 0.5px black;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.bot-div > div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 70%;
+    background-color: #3ECD87;
+}
+
+/* FOR MOBILES */
+@media (max-width:641px)  { 
+    .bot-div{
+        height: 200px;
+        width: 43%;
+        margin :10px;
+    }
+}
