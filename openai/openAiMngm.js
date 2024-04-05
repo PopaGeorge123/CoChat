@@ -15,8 +15,27 @@ async function buildAssistantWithFiles(filename , files){
     }
 }
 
+async function createFilesToOpenAI(files){
+    try{
+        const filesCreated = []
+        files.forEach(async (element, index) => {
+            const path = await fileHandler.saveFile(element.buffer, element.originalname ,'/tempFiles')
+            const createdFile = await AIModule.createFile(path)
+            await fileHandler.deleteFile(path)
+            filesCreated.push(createdFile)
+        });
+
+        return filesCreated
+
+    }catch(err){
+        console.error(err)
+    }
+}
+
+
 module.exports = {
-    buildAssistantWithFiles
+    buildAssistantWithFiles,
+    createFilesToOpenAI
 }
 
 

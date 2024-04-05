@@ -34,31 +34,37 @@ router.post('/countchars', ensureAuthenticated , upload.single('file') , async (
 
 router.post('/buildbot', ensureAuthenticated , upload.any(), async (req, res) => {
   try{
-    const fileData = req.files[0].buffer;
-    const fileName = req.files[0].originalname;
+    const receivedFiles = req.files
+    console.log("REQ FILES : ",receivedFiles)
+
+    const createdFilesIds = await aiMngm.createFilesToOpenAI(receivedFiles)
+    console.log("CREATED : ",createdFilesIds)
+    
+    // const fileData = req.files[0].buffer;
+    // const fileName = req.files[0].originalname;
     //console.log(fileData)
     //console.log(fileName)
 
-    const buildbot = await aiMngm.buildAssistantWithFiles( fileName , fileData )
-    const dbAddAssistant = await DB.addAssistantToUser(req.user._id ,{
-      name:fileName,
-      id:buildbot.id
-    })
+    //const buildbot = await aiMngm.buildAssistantWithFiles( fileName , fileData )
+    // const dbAddAssistant = await DB.addAssistantToUser(req.user._id ,{
+    //   name:fileName,
+    //   id:buildbot.id
+    // })
     
-    const dbResp = await DB.createAssistant(
-      buildbot.id , 
-      fileName , 
-      req.user._id ,
-      buildbot.model,
-      true,
-      false
-      )
+    // const dbResp = await DB.createAssistant(
+    //   buildbot.id , 
+    //   fileName , 
+    //   req.user._id ,
+    //   buildbot.model,
+    //   true,
+    //   false
+    //   )
 
-    if(dbResp){
-      res.status(200).send({
-        botId : buildbot.id
-      })
-    }
+    // if(dbResp){
+    //   res.status(200).send({
+    //     botId : buildbot.id
+    //   })
+    // }
   }catch(err){
     console.error(err)
   }

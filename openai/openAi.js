@@ -8,7 +8,6 @@ const fs = require('fs')
 const OWN_INSTRUCTUIN = 'I want you to act as a support agent. Your name is "AI Assistant". You will provide me with answers from the given info. If the answer is not included, say exactly "Hmm, I am not sure." and stop after that. Refuse to answer any question not about the info. Never break character.'
  
 async function buildAssistant(file){
-
   const botInstructions = await openai.files.create({
     file: fs.createReadStream(file),
     purpose: "assistants",
@@ -25,6 +24,18 @@ async function buildAssistant(file){
   return assistant
 }
 
+async function createFile(file){
+  const botInstructions = await openai.files.create({
+    assistant:'asst_VGFN8ngB94nn1mQXTkCFW534',
+    file: fs.createReadStream(file),
+    purpose: "assistants",
+  });
+  console.log("created file : ",botInstructions)
+
+  return botInstructions
+}
+
 module.exports = {
-  buildAssistant
+  buildAssistant,
+  createFile
 }

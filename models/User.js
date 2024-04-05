@@ -42,15 +42,6 @@ const AssistantSchema = new mongoose.Schema({
         type:Boolean,
         required:true
     }
-    // },
-    // numberOfCharacters:{
-    //     type:Number,
-    //     required:true
-    // },
-    // LastTrainDate:{
-    //     type:String,
-    //     required:true
-    // }
 });
 
 const User = mongoose.model('User', UserSchema);
