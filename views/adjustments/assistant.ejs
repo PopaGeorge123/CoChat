@@ -7,7 +7,13 @@
   <title>Document</title>
 </head>
 <body>
-  <style>div{border: solid 0.5px black;}</style>
+  <style>
+    p{
+      text-align: left;
+      margin: 0;
+      
+    }
+  </style>
 
 <header class="header">
   <a href="" class="logo">
@@ -17,7 +23,7 @@
   <input class="menu-btn" type="checkbox" id="menu-btn" />
   <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
   <ul class="menu">
-    <li><a href="/mybots">ChatBots</a></li>
+    <li><a href="/myassistants">ChatBots</a></li>
     <li><a href="">Help</a></li>
     <li><a href="">Acount</a></li>
   </ul>
@@ -33,31 +39,27 @@
 
 <div class="container">
   <div class="row mt-3">
-    <div class="col-12"><h2>Name of ChatBot</h2></div>
+    <div class="col-12"><h2><%= data.name %></h2></div>
   </div>
   <div class="row">
     <div class="col-12 col-md-6">
-      <div class="row">
-        <h6>Chatbot ID</h4>
-        <h6>SWC12amWDGPzny8z1f6bv</h3>
+      <div class="row my-3" style="margin-top: 30px;">
+        <p class="text-body-tertiary">Chatbot ID</p>
+        <p>SWC12amWDGPzny8z1f6bv</p>
       </div>
-      <div class="row">
+      <div class="row my-3">
         <div class="col-6">
-          <h6>Status</h4>
-          <h6>trained</h3>
+          <p class="text-body-tertiary">Status</p>
+          <p><%= data.status?'Trained':'Untrained' %></p>
         </div>
         <div class="col-6">
-          <h6>Model</h4>
-          <h6>Turbo fuersa</h3>
+          <p class="text-body-tertiary">Model</p>
+          <p><%= data.model%></p>
         </div>
       </div>
-      <div class="row">
-        <h6>Number of characters</h4>
-        <h6>67.239</h3>
-      </div>
-      <div class="row">
-        <h6>Visibility</h4>
-        <h6>Visible</h3>
+      <div class="row my-3">
+        <p class="text-body-tertiary">Active</p>
+        <p><%= data.enabled?'Yes':'No' %></p>
       </div>
     </div>
     <div class="col-12 col-md-6" style="background-color: #daede4;">

@@ -29,18 +29,17 @@ async function createNewAssistant(name){
 
 async function uploadFilesToOpenAi(files){
     try{
-        const filesCreated = []
-        files.forEach(async (element, index) => {
-            const path = await fileHandler.saveFile(element.buffer, element.originalname ,'/tempFiles')
-            const createdFile = await createFile(path)
-            await fileHandler.deleteFile(path)
-            filesCreated.push(createdFile)
-        });
+        const filesCreated = await Promise.all(files.map(async (element, index) => {
+            const path = await fileHandler.saveFile(element.buffer, element.originalname ,'/tempFiles');
+            const createdFile = await createFile(path);
+            await fileHandler.deleteFile(path);
+            return createdFile.id;
+        }));
 
-        return filesCreated
-
-    }catch(err){
-        console.error(err)
+        //console.log(filesCreated);
+        return filesCreated;
+    } catch(err) {
+        console.error(err);
     }
 }
 
@@ -53,11 +52,22 @@ async function updatedAssistant(id, data){
     }
 }
 
+async function getAssistantById(id){
+    try{
+        const myAssistant = await openai.beta.assistants.retrieve(id);
+        return myAssistant
+    }catch(err){
+        console.error(err)
+        return false
+    }
+}
+
 
 module.exports = {
     createNewAssistant,
     uploadFilesToOpenAi,
     updatedAssistant,
+    getAssistantById
 }
 
 

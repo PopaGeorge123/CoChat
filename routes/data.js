@@ -32,9 +32,11 @@ router.post('/countchars', ensureAuthenticated , upload.single('file') , async (
 
 router.post('/buildasst', ensureAuthenticated , upload.any(), async (req, res) => {
   try{
+    const processed_files = []
     const receivedFiles = req.files
     const createdFilesIds = await aiMngm.uploadFilesToOpenAi(receivedFiles)
     const assistant = await aiMngm.createNewAssistant(req.files[0].originalname)
+
     const updatedAssistant = await aiMngm.updatedAssistant(assistant.id,{
       file_ids: createdFilesIds
     })
@@ -47,16 +49,17 @@ router.post('/buildasst', ensureAuthenticated , upload.any(), async (req, res) =
       status : true,
       enabled : false
     })
-    const result = await DB.addAsstToUser(req.user.id,{
-      name:assistant.name,
-      _id:assistant.id
-    })
+    const result = await DB.addAsstToUser(req.user.id, {
+      name: assistant.name,
+      id: assistant.id
+    });
+  
 
 
     if(dbResp){
       res.status(200).send({
       botId : assistant.id
-      })
+    })
     }
   }catch(err){
     console.error(err)

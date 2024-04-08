@@ -8,18 +8,18 @@ mongoose.connect(
     { useNewUrlParser: true ,useUnifiedTopology: true})
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.log(err));
-
-    async function addAsstToUser(user,assistant){
         try {
-            const updateResult = await DBSchemas.Assistant.updateOne(
+            const updateResult = await DBSchemas.User.updateOne(
                 { _id: user },
                 { $push: { assistants: assistant } }
             );
-    
+            console.log(updateResult)
             return updateResult
         } catch (error) {
             console.error('Error adding asst to user:', error);
             return false;
         }
-    }
-addAsstToUser('')
+addAsstToUser('660e5c19da601b06a09f5eca',{
+    name:'viorel',
+    _id:'bjsncnscscsncnklsn'
+})
