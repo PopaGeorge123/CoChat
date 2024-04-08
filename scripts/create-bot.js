@@ -172,7 +172,7 @@ async function executeCreateBot(){
       }
       //create assistant route, i will modify it later
       try {
-        const response = await fetch('/data/buildbot', {
+        const response = await fetch('/data/buildasst', {
             method: 'POST',
             body: formData
         });

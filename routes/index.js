@@ -6,9 +6,9 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 router.get('/', forwardAuthenticated, (req, res) => res.render('Welcome'));
 
 // My Bots
-router.get('/mybots', ensureAuthenticated, (req, res) =>{
-  res.render('mybots',{
-    ChatBots : req.user.ChatBots
+router.get('/myassistants', ensureAuthenticated, (req, res) =>{
+  res.render('myassistants',{
+    assistants : req.user.assistants
   })
 });
 

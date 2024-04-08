@@ -19,7 +19,7 @@ router.get('/:id/', ensureAuthenticated, async (req, res) => {
         })
         }
         }catch(err){
-            res.redirect('/mybots')
+            res.redirect('/myassistants')
             console.error(err)
         }
 

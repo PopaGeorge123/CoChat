@@ -9,21 +9,17 @@ mongoose.connect(
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.log(err));
 
-async function createAssistant() {
-    try {
-        const newAssistant = new DBSchemas.Assistant({
-            _id: '123',
-            name: 'ASSISTANT_1',
-            owner: "ownerId",
-            model: "model",
-            status : true,
-            enabled : false
-        });
-        const savedAssistant = await newAssistant.save();
-        console.log(savedAssistant)
-    } catch (error) {
-      console.error('Error creating Assistant:', error);
-      return false;
+    async function addAsstToUser(user,assistant){
+        try {
+            const updateResult = await DBSchemas.Assistant.updateOne(
+                { _id: user },
+                { $push: { assistants: assistant } }
+            );
+    
+            return updateResult
+        } catch (error) {
+            console.error('Error adding asst to user:', error);
+            return false;
+        }
     }
-}
-createAssistant()
+addAsstToUser('')

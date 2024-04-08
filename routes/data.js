@@ -9,16 +9,14 @@ const FileManager = require('../files/fileMngm')
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-//DB
 const DB = require('../db/dbMngm')
-
 
 const genQuestionId = () => crypto.randomBytes(20).toString('hex');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const { Assistant } = require('../models/User');
 
-router.get('/createbot', ensureAuthenticated ,async (req, res) =>{
-  res.render('createchatbot')
+router.get('/createassistant', ensureAuthenticated ,async (req, res) =>{
+  res.render('createassistant')
 });
 
 router.post('/countchars', ensureAuthenticated , upload.single('file') , async (req, res) => {
@@ -32,39 +30,34 @@ router.post('/countchars', ensureAuthenticated , upload.single('file') , async (
   console.log(charCount)
 });
 
-router.post('/buildbot', ensureAuthenticated , upload.any(), async (req, res) => {
+router.post('/buildasst', ensureAuthenticated , upload.any(), async (req, res) => {
   try{
     const receivedFiles = req.files
-    console.log("REQ FILES : ",receivedFiles)
-
-    const createdFilesIds = await aiMngm.createFilesToOpenAI(receivedFiles)
-    console.log("CREATED : ",createdFilesIds)
+    const createdFilesIds = await aiMngm.uploadFilesToOpenAi(receivedFiles)
+    const assistant = await aiMngm.createNewAssistant(req.files[0].originalname)
+    const updatedAssistant = await aiMngm.updatedAssistant(assistant.id,{
+      file_ids: createdFilesIds
+    })
     
-    // const fileData = req.files[0].buffer;
-    // const fileName = req.files[0].originalname;
-    //console.log(fileData)
-    //console.log(fileName)
+    const dbResp = await DB.createAssistant({
+      _id: assistant.id,
+      name: req.files[0].originalname,
+      owner: req.user._id,
+      model: assistant.model,
+      status : true,
+      enabled : false
+    })
+    const result = await DB.addAsstToUser(req.user.id,{
+      name:assistant.name,
+      _id:assistant.id
+    })
 
-    //const buildbot = await aiMngm.buildAssistantWithFiles( fileName , fileData )
-    // const dbAddAssistant = await DB.addAssistantToUser(req.user._id ,{
-    //   name:fileName,
-    //   id:buildbot.id
-    // })
-    
-    // const dbResp = await DB.createAssistant(
-    //   buildbot.id , 
-    //   fileName , 
-    //   req.user._id ,
-    //   buildbot.model,
-    //   true,
-    //   false
-    //   )
 
-    // if(dbResp){
-    //   res.status(200).send({
-    //     botId : buildbot.id
-    //   })
-    // }
+    if(dbResp){
+      res.status(200).send({
+      botId : assistant.id
+      })
+    }
   }catch(err){
     console.error(err)
   }

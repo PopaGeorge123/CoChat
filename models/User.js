@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    ChatBots: [
+    assistants: [
         {
           name: String,
           id: String

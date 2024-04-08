@@ -74,18 +74,18 @@
     <div class="row">
       <div class="col-6 col-lg-10"><h2 class="mt-2">ChatBots</h2></div>
       <div class="col-6 col-lg-2">
-        <button class="btn mb-2" id="new-bot-button" onclick="location.href ='data/createbot'">New ChatBot</button>
+        <button class="btn mb-2" id="new-bot-button" onclick="location.href ='data/createassistant'">New ChatBot</button>
       </div>
     </div>
     <div class="row">
       
       <div class="bots-div">
-        <% for (let i = 0; i < ChatBots.length; i++) { %>
-          <div class="bot-div shadow-sm bg-body-tertiary rounded" onclick="location.href='data/assistant/<%= ChatBots[i].id%>'">
+        <% for (let i = 0; i < assistants.length; i++) { %>
+          <div class="bot-div shadow-sm bg-body-tertiary rounded" onclick="location.href='data/assistant/<%= assistants[i].id%>'">
             <div>
               <svg width="100px" fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21.928 11.607c-.202-.488-.635-.605-.928-.633V8c0-1.103-.897-2-2-2h-6V4.61c.305-.274.5-.668.5-1.11a1.5 1.5 0 0 0-3 0c0 .442.195.836.5 1.11V6H5c-1.103 0-2 .897-2 2v2.997l-.082.006A1 1 0 0 0 1.99 12v2a1 1 0 0 0 1 1H3v5c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5a1 1 0 0 0 1-1v-1.938a1.006 1.006 0 0 0-.072-.455zM5 20V8h14l.001 3.996L19 12v2l.001.005.001 5.995H5z"></path><ellipse cx="8.5" cy="12" rx="1.5" ry="2"></ellipse><ellipse cx="15.5" cy="12" rx="1.5" ry="2"></ellipse><path d="M8 16h8v2H8z"></path></g></svg>
             </div>
-            <p><%= ChatBots[i].name %></p>
+            <p><%= assistants[i].name %></p>
           </div>
         <% } %>
       </div>
