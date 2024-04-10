@@ -36,7 +36,7 @@ async function updateSelectedFiles(){
     charTotalCount = charTotalCount + resp.chars
 
     uploadedFilesDiv.innerHTML += `<div class="selected-file-item" id="${file}">
-                                  <h5>${UserSelectedFiles[file].name} <span class="text-char-count">(${resp.chars} chars)</span></h5> 
+                                  <h5>${UserSelectedFiles[file].name.length>20?UserSelectedFiles[file].name.substring(0, 10)+'...':UserSelectedFiles[file].name} <span class="text-char-count">(${resp.chars} chars)</span></h5> 
                                   <svg onclick="deleteUploadedFile(${file})" width="25" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <style>.cls-1{fill:#ff3c00;}.cls-2{fill:#ffffff;}</style> </defs> <title></title> <g id="fill"> <path class="cls-1" d="M27.35,8.49h-5s0-.08,0-.12a6.37,6.37,0,0,0-12.74,0s0,.08,0,.12h-5a1,1,0,1,0,0,1.93h2.7V26.14A3.86,3.86,0,0,0,11.21,30h9.58a3.86,3.86,0,0,0,3.86-3.86V10.42h2.7a1,1,0,1,0,0-1.93ZM11.56,8.37a4.44,4.44,0,0,1,8.88,0s0,.08,0,.12H11.54S11.56,8.41,11.56,8.37Z"></path> <path class="cls-2" d="M12.76,25a1,1,0,0,1-1-1V15.4a1,1,0,0,1,1.93,0v8.65A1,1,0,0,1,12.76,25Z"></path> <path class="cls-2" d="M19.24,25a1,1,0,0,1-1-1V15.4a1,1,0,0,1,1.93,0v8.65A1,1,0,0,1,19.24,25Z"></path> </g> </g>
                                   </svg>
                                 </div>`
