@@ -21,7 +21,7 @@ async function createFile(file){
 async function createNewAssistant(name){
     const myAssistant = await openai.beta.assistants.create({
         name : name,
-        tools: [{ type: "code_interpreter" }],
+        tools: [{ type: "code_interpreter" },{ type: "retrieval" }],
         model: "gpt-3.5-turbo",
     });
     return myAssistant
@@ -62,12 +62,46 @@ async function getAssistantById(id){
     }
 }
 
+async function askAsst(asst,prompt){
+    try{
+      const AIResponses = []
+      const thread = await openai.beta.threads.create();
+      const message = await openai.beta.threads.messages.create(
+        thread.id,
+        {
+          role: "user",
+          content: prompt
+        }
+      );
+      let run = await openai.beta.threads.runs.createAndPoll(
+        thread.id,
+        { 
+          assistant_id: asst,
+        }
+      );
+  
+      if (run.status === 'completed') {
+        const messages = await openai.beta.threads.messages.list(
+          run.thread_id
+        );
+        for (const message of messages.data.reverse()) {
+          if(message.role === 'assistant'){
+            AIResponses.push(message.content[0].text.value)
+          }
+        }
+      }
+      return AIResponses
+    }catch(err){
+        console.error(err)
+    }
+  }
 
 module.exports = {
     createNewAssistant,
     uploadFilesToOpenAi,
     updatedAssistant,
-    getAssistantById
+    getAssistantById,
+    askAsst
 }
 
 

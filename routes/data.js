@@ -66,6 +66,25 @@ router.post('/buildasst', ensureAuthenticated , upload.any(), async (req, res) =
   }
 });
 
+router.get('/query', async (req, res)=>{
+  const { prompt } = req.query
+  const { asst } = req.query
+
+  if(prompt === undefined || asst === undefined){
+    res.send(400)
+  }else{
+    console.log('ASST : ',asst)
+    console.log('Q : ',prompt)
+    
+
+    const asst_resp = await aiMngm.askAsst(asst , prompt)
+
+    res.json({
+      asst_resp:asst_resp
+    })
+  }
+})
+
 router.use('/assistant',ensureAuthenticated, require('./assistant'))
 
 module.exports = router;

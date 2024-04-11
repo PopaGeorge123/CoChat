@@ -2,30 +2,18 @@ var messagesContent = document.getElementById('messages-content');
 var messageInput = document.getElementById('message-input');
 var messageSubmit = document.getElementById('message-submit');
 var windowEvent = window.addEventListener;
+var messageArea = document.querySelector('.messages')
 
 // Variables
 var i = 0;
-var fake = [
-  'The error youre encountering, "Uncaught TypeError: Cannot read properties of null (reading appendChild)", indicates that the querySelector method couldnt find the element with the class .mCSB_container. This means that messagesContent.querySelector(.mCSB_container) is returning null, and then youre trying to call the appendChild method on null, which results in an error.To resolve this issue, you need to ensure that the .mCSB_container element exists within the messagesContent element. Make sure that:The .messages-content element exists in your HTML structure.Inside the .messages-content element, there should be an element with the class .mCSB_container.You should also check whether your HTML structure matches the structure expected by your JavaScript code. If the structure is different, you may need to adjust your JavaScript code accordingly.If youve confirmed that the HTML structure is correct and the element with the class .mCSB_container exists within .messages-content, then the issue might be related to the timing of when your JavaScript code is executed. Ensure that your JavaScript code is executed after the DOM has fully loaded. You can achieve this by placing your JavaScript code inside a DOMContentLoaded event listener or by placing your script tag at the end of your HTML body.Heres an example of using DOMContentLoaded event listener:',
-  'Nice to meet you',
-  'How are you?',
-  'Not too bad, thanks',
-  'What do you do?',
-  'That\'s awesome',
-  'Codepen is a nice place to stay',
-  'I think you\'re a nice person',
-  'Why do you think that?',
-  'Can you explain?',
-  'Anyway I\'ve gotta go now',
-  'It was a pleasure chat with you',
-  'Time to make a new codepen',
-  'Bye',
-  ':)'
-];
+const asstId = 'asst_xYf7KoeoZOtL2FNVA6OoEz1f';
 
-// Function to update scrollbar
 function updateScrollbar() {
-    messagesContent.scrollTop = messagesContent.scrollHeight;
+  // setTimeout(function(){
+  //   messageArea.scrollTop = messageArea.scrollHeight;
+  //   console.log('RUNNED')
+  // },2000)
+  messageArea.scrollTop = messageArea.scrollHeight; 
 }
 
 // Function to insert message
@@ -39,7 +27,6 @@ function insertMessage() {
   message.textContent = msg;
   messagesContent.appendChild(message);
   messageInput.value = null;
-  updateScrollbar();
 }
 
 // Click event for message submit button
@@ -58,19 +45,18 @@ windowEvent('keydown', function(e) {
 });
 
 function fakeMessage() {
-var loadingMessage = document.createElement('div');
-loadingMessage.className = 'message loading new';
-loadingMessage.innerHTML = '<figure class="avatar"><img src="/images/main-logo.svg" /></figure><span></span>';
-messagesContent.appendChild(loadingMessage);
-updateScrollbar();
-    setTimeout(function() {
+  //Loading Anim
+  var loadingMessage = document.createElement('div');
+  loadingMessage.className = 'message loading new';
+  loadingMessage.innerHTML = '<figure class="avatar"><img src="/images/main-logo.svg" /></figure><span></span>';
+  messagesContent.appendChild(loadingMessage);
+
+  setTimeout(function() {
     messagesContent.querySelector('.message.loading').remove();
     var newMessage = document.createElement('div');
     newMessage.className = 'message new';
     newMessage.innerHTML = '<figure class="avatar"><img src="/images/main-logo.svg" /></figure>' + fake[i];
     messagesContent.appendChild(newMessage);
-        
-    updateScrollbar();
-    i++;
-}, 1000 + (Math.random() * 20) * 100);
+      i++;
+}, 1000 + (Math.random() * 20) * 100);  
 }
