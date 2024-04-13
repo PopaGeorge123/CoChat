@@ -10,6 +10,7 @@ router.get('/:id/', ensureAuthenticated, async (req, res) => {
         const assistantId = req.params.id;
         const user = req.user
       
+        //posible use to get more data about the assistant
         //const AIassistant = await AI.getAssistantById(assistantId)//
         const DBassistant = await DB.getAssistantById(assistantId)//name,model,status,enabled
         

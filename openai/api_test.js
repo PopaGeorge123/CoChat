@@ -4,43 +4,44 @@ const openai = new OpenAI({apiKey: API_KEY});
 
 //FILES
 const fs = require('fs')
+const app = express();
+const port = 5000;
+//const OWN_INSTRUCTUIN = 'I want you to act as a support agent. Your name is "AI Assistant". You will provide me with answers from the given info. If the answer is not included, say exactly "Hmm, I am not sure." and stop after that. Refuse to answer any question not about the info. Never break character.'
 
 
-const OWN_INSTRUCTUIN = 'I want you to act as a support agent. Your name is "AI Assistant". You will provide me with answers from the given info. If the answer is not included, say exactly "Hmm, I am not sure." and stop after that. Refuse to answer any question not about the info. Never break character.'
+app.get('/data',async (req,res)=>{
+  res.render('adjustments/assistant')
+})
 
+app.get('/data/stream', async (req, res) => {
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Connection', 'keep-alive');
 
-async function askAsst(asst,prompt){
-  try{
-    const thread = await openai.beta.threads.create();
-    const message = await openai.beta.threads.messages.create(
-      thread.id,
-      {
-        role: "user",
-        content: prompt
-      }
-    );
-    let run = await openai.beta.threads.runs.createAndPoll(
-      thread.id,
-      { 
-        assistant_id: asst,
-      }
-    );
+  const asstId = req.query.asst;
+  const prompt = req.query.prompt;
 
-    if (run.status === 'completed') {
-      const messages = await openai.beta.threads.messages.list(
-        run.thread_id
-      );
-      for (const message of messages.data.reverse()) {
-        if(message.role === 'assistant'){
-          return message.content[0].text.value
-        }
-      }
-    }
-  }catch(err){
-      console.error(err)
-  }
-}
+  // Create a run with streaming
+  const run = openai.beta.threads.runs.stream(asstId, {
+    assistant_id: asstId
+  })
+    .on('textCreated', (text) => {
+      // Send assistant response to the client
+      res.write(`data: ${JSON.stringify({ asst_resp: text.value })}\n\n`);
+    })
+    .on('error', (error) => {
+      console.error('OpenAI Error:', error);
+      res.end();
+    });
 
-const asst = 'asst_eH5ET1omBJiI8djA3qojOFn1'
+  // Close the connection when the client disconnects
+  req.on('close', () => {
+    run.stop();
+    res.end();
+  });
+});
 
-console.log(await askAsst(asst,"Cum obtin un api Key"));
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
