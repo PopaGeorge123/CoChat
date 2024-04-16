@@ -1,32 +1,25 @@
-const express = require('express');
-const session = require('express-session');
-const app = express();
 const crypto = require('crypto');
 
+function generateRandomString() {
+    return crypto.randomBytes(Math.ceil(10 / 2)).toString('hex').slice(0, length);
+}
 
-const sessionCookies = [{
-  user:{
-    cookie:'111111',
-    thread:'thread_abc123'
-  }
-},{
-  user:{
-    cookie:'222222',
-    thread:'thread_abc123'
-  }
-}];
+const sessionCookies = [];
 
-console.log(sessionCookies)
-
-function getUserByCookie(cookieToFind) {
+async function getUserByCookie(cookieToFind) {
   return sessionCookies.find(session => session.user.cookie === cookieToFind);
 }
 
-function setCookie(user){
-  sessionCookies.push(user)
+async function setCookie(thread){
+  sessionCookies.push({
+    user:{
+        cookie:generateRandomString(),
+        thread:thread
+    }
+  })
 }
 
-function deleteUserByCookie(cookieToDelete) {
+async function deleteUserByCookie(cookieToDelete) {
   const indexToDelete = sessionCookies.findIndex(session => session.user.cookie === cookieToDelete);
   if (indexToDelete !== -1) {
     sessionCookies.splice(indexToDelete, 1);
@@ -36,7 +29,11 @@ function deleteUserByCookie(cookieToDelete) {
   }
 }
 
-console.log(sessionCookies)
+module.exports = {
+    getUserByCookie,
+    setCookie,
+    deleteUserByCookie
+}
 
 // // Middleware to track and manage session cookies
 // app.use((req, res, next) => {

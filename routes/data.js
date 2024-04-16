@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const express = require('express');
 const router = express.Router();
 const aiMngm = require('../openai/openAiMngm')
+const cookie = require('../openai/sesionMng')
 
 const FileManager = require('../files/fileMngm')
 
