@@ -77,11 +77,23 @@ router.get('/query', async (req, res)=>{
     console.log('Q : ',prompt)
     
     const assistant_response = await aiMngm.askAsst(asst , prompt)
-
+    console.log("RESP : ",assistant_response)
     // Test Response
     // const assistant_response = [
     //     'Modern rackets have facilitated a number of advancements in various sports, notably tennis and badminton. Some of the key benefits that modern rackets have provided include: 1. $Power and Control$: Modern rackets are designed to provide players with a balance of power and control. They are engineered to maximize the speed and force of the players shots while maintaining accuracy and precision. 2. $Lightweight Design$: Modern rackets are typically lighter in weight compared to older rackets. This allows players to maneuver the racket more easily and swiftly during gameplay. 3. $Improved Materials$: Modern rackets are often made from advanced materials such as graphite, carbon fiber, and aluminum. These materials are lightweight, durable, and offer excellent shock absorption, providing players with a more comfortable playing experience. 4. $Enhanced Performance$: The design and technology used in modern rackets help players improve their performance on the court. Rackets are engineered to reduce vibrations, increase stability, and optimize power transfer from the player to the ball. 5. $Reduced Risk of Injury$: Modern rackets are designed to help reduce the risk of injuries by minimizing the impact of shock and vibration on players arms and wrists. This can help prevent overuse injuries and strain on the players body. Overall, modern rackets have revolutionized the way sports like tennis and badminton are played, allowing players to hit harder, more accurately, and with greater control than ever before.'
     // ]
+
+  //   const processedArray = await Promise.all(array.map(async (element) => {
+  //     let responseText = element;
+  //     let index = responseText.indexOf('【');
+  //     if (index !== -1) {
+  //         responseText = responseText.substring(0, index) + '.';
+  //     }
+  //     return responseText;
+  // }));
+  
+
+
     res.json({
       asst_resp : assistant_response
     })
