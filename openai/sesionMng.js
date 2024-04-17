@@ -10,10 +10,10 @@ async function getUserByCookie(cookieToFind) {
   return sessionCookies.find(session => session.user.cookie === cookieToFind);
 }
 
-async function setCookie(thread){
+async function setCookie(cookie,thread){
   sessionCookies.push({
     user:{
-        cookie:generateRandomString(),
+        cookie:cookie,
         thread:thread
     }
   })
@@ -29,10 +29,15 @@ async function deleteUserByCookie(cookieToDelete) {
   }
 }
 
+async function cookieArray(){
+  return sessionCookies
+}
+
 module.exports = {
-    getUserByCookie,
-    setCookie,
-    deleteUserByCookie
+  getUserByCookie,
+  setCookie,
+  deleteUserByCookie,
+  cookieArray
 }
 
 // // Middleware to track and manage session cookies

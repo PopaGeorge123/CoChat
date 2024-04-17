@@ -34,12 +34,14 @@ async function insertMessage() {
     const response = await fetch(`http://localhost:5000/data/query?prompt=${prompt}&asst=${asstId}`);
     const json = await response.json();
     const res = json.asst_resp;
-    for (el in res) {
-      // Detect and highlight text between $ symbols
-      const highlightedText = res[el].replace(/\$([^$]+)\$/g, '<span class="highlighted-content-response">$1</span>');
-      console.log(highlightedText)
-      fakeMessage(highlightedText);
-    }
+    console.log("RESP : ",res)
+    // for (el of res) {
+    //   // Detect and highlight text between $ symbols
+    //   //const highlightedText = res[el].replace(/\$([^$]+?)\$/g, '<span class="highlighted-content-response">$1</span>');
+    //   console.log(el)
+      
+    // }
+    fakeMessage(res);
     hideLoadingMsg();
     updateScrollbar(); // Move the scroll update here
   } catch (error) {
@@ -48,6 +50,25 @@ async function insertMessage() {
   }
 }
 
+window.addEventListener('unload', function () {
+  console.log('EXECUTED')
+  // Execute the fetch function here
+  fetch('http://localhost:5000/data/rmvtrd')
+      .then(response => {
+          if (response.ok) {
+              return response.json();
+          }
+          throw new Error('Network response was not ok.');
+      })
+      .then(data => {
+          // Process the fetched data
+          console.log(data);
+      })
+      .catch(error => {
+          // Handle errors
+          console.error('Error fetching data:', error);
+      });
+});
 
 messageSubmit.addEventListener('click', async function() {
   await insertMessage();

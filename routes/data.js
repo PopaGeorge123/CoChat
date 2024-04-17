@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const express = require('express');
 const router = express.Router();
 const aiMngm = require('../openai/openAiMngm')
-const cookie = require('../openai/sesionMng')
+const cookie_mngm = require('../openai/sesionMng')
 
 const FileManager = require('../files/fileMngm')
 
@@ -12,7 +12,7 @@ const upload = multer({ storage: storage });
 
 const DB = require('../db/dbMngm')
 
-const genQuestionId = () => crypto.randomBytes(20).toString('hex');
+const genCookie = () => crypto.randomBytes(20).toString('hex');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const { Assistant } = require('../models/User');
 
@@ -68,38 +68,68 @@ router.post('/buildasst', ensureAuthenticated , upload.any(), async (req, res) =
 router.get('/query', async (req, res)=>{
   const { prompt } = req.query
   const { asst } = req.query
+  let chatCookie = '';
 
-  console.log(prompt)
+  if(!req.session.chatCookie){ //no cookie
+    chatCookie = genCookie()
+    req.session.chatCookie = chatCookie
+  }else{
+    chatCookie = req.session.chatCookie
+  }
 
   if(prompt === undefined || asst === undefined){
     res.send(400)
   }else{
-    console.log('ASST : ',asst)
-    console.log('Q : ',prompt)
-    
-    const assistant_response = await aiMngm.askAsst(asst , prompt)
+    console.log("COOKIE : ",chatCookie)
+    const assistant_response = await aiMngm.askAsst(chatCookie , asst , prompt)
     console.log("RESP : ",assistant_response)
     // Test Response
-    // const assistant_response = [
-    //     'Modern rackets have facilitated a number of advancements in various sports, notably tennis and badminton. Some of the key benefits that modern rackets have provided include: 1. $Power and Control$: Modern rackets are designed to provide players with a balance of power and control. They are engineered to maximize the speed and force of the players shots while maintaining accuracy and precision. 2. $Lightweight Design$: Modern rackets are typically lighter in weight compared to older rackets. This allows players to maneuver the racket more easily and swiftly during gameplay. 3. $Improved Materials$: Modern rackets are often made from advanced materials such as graphite, carbon fiber, and aluminum. These materials are lightweight, durable, and offer excellent shock absorption, providing players with a more comfortable playing experience. 4. $Enhanced Performance$: The design and technology used in modern rackets help players improve their performance on the court. Rackets are engineered to reduce vibrations, increase stability, and optimize power transfer from the player to the ball. 5. $Reduced Risk of Injury$: Modern rackets are designed to help reduce the risk of injuries by minimizing the impact of shock and vibration on players arms and wrists. This can help prevent overuse injuries and strain on the players body. Overall, modern rackets have revolutionized the way sports like tennis and badminton are played, allowing players to hit harder, more accurately, and with greater control than ever before.'
-    // ]
+    //const assistant_response = [
+    //    'Hmm, I am not sure.'
+    //]
 
-  //   const processedArray = await Promise.all(array.map(async (element) => {
-  //     let responseText = element;
-  //     let index = responseText.indexOf('【');
-  //     if (index !== -1) {
-  //         responseText = responseText.substring(0, index) + '.';
-  //     }
-  //     return responseText;
-  // }));
-  
+    const responseArray = assistant_response.split('\n');
+    const processedArray = await Promise.all(responseArray.map(async (element) => {
+      let responseText = element;
+      let index = responseText.indexOf('【');
+      if (index !== -1) {
+          responseText = responseText.substring(0, index) + '.';
+      }
+      return responseText;
+    }));
+    const processedResponse = processedArray.join('\n');
 
+    // Use processedResponse here
+    console.log(processedResponse);
 
     res.json({
-      asst_resp : assistant_response
+      asst_resp : processedResponse
     })
   }
 })
+
+router.get('/rmvtrd', async (req, res) => {
+  console.log("COOKIE : ", req.session.chatCookie);
+
+  if (req.session.chatCookie == undefined) { //no cookie
+    console.log("NO COOKIE");
+    res.sendStatus(200);
+  } else {
+    console.log("HAS COOKIE");
+    try {
+      const status = await aiMngm.deleteThread(req.session.chatCookie);
+      delete req.session.chatCookie;
+      if (status) {
+        console.log("Deleted Thread!");
+      }
+      res.sendStatus(200);
+    } catch (error) {
+      console.error("Error deleting thread:", error);
+      res.status(500).send("Error deleting thread");
+    }
+  }
+  console.log("COOKIE : ", req.session.chatCookie);
+});
 
 
 router.use('/assistant',ensureAuthenticated, require('./assistant'))
