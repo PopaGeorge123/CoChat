@@ -4,7 +4,7 @@ var messageSubmit = document.getElementById('message-submit');
 var windowEvent = window.addEventListener;
 var messageArea = document.querySelector('.messages');
 
-const asstId = 'asst_7XwMW3avOkszxOoKAXKjRxj5';
+const asstId = window.variables.asstId;
 
 function updateScrollbar() {
   setTimeout(() => {

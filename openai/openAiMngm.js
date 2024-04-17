@@ -8,7 +8,7 @@ const openai = new OpenAI({apiKey: API_KEY});
 //FILES
 const fs = require('fs')
 
-const OWN_INSTRUCTUIN = 'I want you to act as a support agent. Your name is "AI Assistant". You will provide me with answers from the given info. If the answer is not included, say exactly "Hmm, I am not sure." and stop after that. Refuse to answer any question not about the info. Never break character.'
+const BASE_INSTRUCTUIN = 'I want you to act as a support agent. Your name is "AI Assistant". You will provide me with answers from the given info. If the answer is not included, say exactly "Hmm, I am not sure." and stop after that. Refuse to answer any question not about the info. Never break character.'
  
 async function createThread() {
   const emptyThread = await openai.beta.threads.create();
@@ -56,6 +56,7 @@ async function createFile(file){
  
 async function createNewAssistant(name){
     const myAssistant = await openai.beta.assistants.create({
+        instructions:BASE_INSTRUCTUIN,
         name : name,
         tools: [{ type: "code_interpreter" },{ type: "retrieval" }],
         model: "gpt-3.5-turbo",
