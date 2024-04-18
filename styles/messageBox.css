@@ -111,7 +111,7 @@ Messages
   margin: 8px 0;
   font-size: 11px;
   line-height: 1.4;
-  margin-left: 45px;
+  margin-left: 10px;
   position: relative;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
@@ -299,10 +299,75 @@ Custom Srollbar
 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
   background-color: rgba(0, 0, 0, 0.5) !important;
 }
+.background-wise-div{
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+}
+
+.main-wise-chat-div{
+  position: fixed;
+  right: -400px;
+  bottom: 105px;
+  width: 400px;
+  transition: .4s;
+  display: none;
+  /* box-shadow: 5px 5px 10px 0.4px rgb(70, 70, 70);
+  border-radius: 20px; */
+}
+.activate-message-content{
+  animation: getIntoScreen 0.4s forwards;
+}
+.deactivate-message-content{
+  animation: getOutOfScreen 0.4s forwards;
+}
+
+.chat-icon{
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  width: 80px;
+  transition: .4s;
+  border-radius: 20px;
+}
+.chat-button-activated{
+  right: 10px;
+  bottom: 10px;
+  width: 90px;
+  box-shadow: 5px 5px 10px 0.4px rgb(70, 70, 70);
+  overflow: hidden;
+}
 
 /*--------------------
 Bounce
 --------------------*/
+
+@keyframes getIntoScreen {
+  0%{
+    right: -400px;
+  }
+  100%{
+    right: 15px;
+  }
+}
+
+@keyframes getOutOfScreen {
+  0%{
+    right: 15px;
+  }
+  80%{
+    right: 25px;
+  }
+  90%{
+    right: -100px;
+  }
+  100%{
+    right: -400px;
+  }
+
+}
+
+
 @keyframes bounce {
   0% {
     transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);

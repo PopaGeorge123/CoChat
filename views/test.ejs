@@ -3,36 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>File Upload Form</title>
+  <link rel="stylesheet" href="/styles/messageBox.css">
+  <title>Document</title>
 </head>
 <body>
-  <form id="fileForm" enctype="multipart/form-data">
-    <input type="file" id="fileInput" name="file" accept=".pdf , .txt , .doc ,.docx">
-    <button type="submit">Upload File</button>
-  </form>
 
-  <script>
-    document.getElementById('fileForm').addEventListener('submit', async function(event) {
-      event.preventDefault();
-      
-      const formData = new FormData();
-      const fileInput = document.getElementById('fileInput');
-      formData.append('file', fileInput.files[0]);
+  <h1>Hesndnaskcnksn</h1>nksankaskckns
 
-      try {
-        const response = await fetch('/data/countchars', {
-          method: 'POST',
-          body: formData
-        });
-        if (response.ok) {
-          console.log('File uploaded successfully');
-        } else {
-          console.error('File upload failed');
-        }
-      } catch (error) {
-        console.error('Error uploading file:', error);
-      }
-    });
-  </script>
+<script src="http://localhost:5000/scripts/embed-assistant.js" defer>
+  window.assistantConfig = {
+    assistant: "SWC12amWDGPzny8z1f6bv"
+  }
+</script>
+
 </body>
 </html>
