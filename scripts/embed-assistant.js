@@ -34,7 +34,7 @@ document.body.appendChild(newDiv);
 var link = document.createElement('link');
 link.rel = 'stylesheet';
 link.type = 'text/css';
-link.href = '/styles/messageBox.css'; // Replace with the path to your CSS file
+link.href = `${baseUrl}/styles/messageBox.css`; // Replace with the path to your CSS file
 
 document.head.appendChild(link);
 
