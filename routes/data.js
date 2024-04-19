@@ -65,6 +65,21 @@ router.post('/buildasst', ensureAuthenticated , upload.any(), async (req, res) =
   }
 });
 
+router.get('/query', (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Allow access from any origin
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', true); // Allow credentials
+  next(); // Pass control to the next middleware or route handler
+});
+router.get('/rmvtrd', (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Allow access from any origin
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', true); // Allow credentials
+  next(); // Pass control to the next middleware or route handler
+});
+
 router.get('/query', async (req, res)=>{
   const { prompt } = req.query
   const { asst } = req.query
