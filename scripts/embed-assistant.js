@@ -5,7 +5,7 @@ const baseUrl = document.currentScript.getAttribute('baseUrl')
 var link = document.createElement('link');
 link.rel = 'stylesheet';
 link.type = 'text/css';
-link.href = `${baseUrl}/styles/messageBox.css`; // Replace with the path to your CSS file
+link.href = `${baseUrl}/styles/messageBox.css`;
 document.head.appendChild(link);
 
 var newDiv = document.createElement('div');

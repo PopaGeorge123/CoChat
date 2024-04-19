@@ -1,9 +1,3 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 :root{
   --chat-background-color:#fff;
   --title-background-color:#3ECD87;
@@ -17,21 +11,7 @@
   margin-left: 10px;
   padding: 0;
   text-decoration: none;
-}
-
-html,
-body {
-  height: 100%;
-}
-
-.bg {
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  filter: blur(80px);
-  transform: scale(1.2);
+  box-sizing: border-box;
 }
 
 /*--------------------
@@ -48,6 +28,7 @@ Chat
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 /*--------------------
@@ -62,6 +43,7 @@ Chat Title
   text-transform: uppercase;
   text-align: left;
   padding: 10px 10px 10px 50px;
+  box-sizing: border-box;
 }
 .chat-title h1, .chat-title h2 {
   font-weight: normal;
@@ -70,11 +52,13 @@ Chat Title
   padding: 0;
   text-align: left;
   margin-left: 8px;
+  box-sizing: border-box;
 }
 .chat-title h2 {
   color: rgba(255, 255, 255, 0.5);
   font-size: 8px;
   letter-spacing: 1px;
+  box-sizing: border-box;
 }
 .chat-title .avatar {
   position: absolute;
@@ -88,10 +72,12 @@ Chat Title
   margin: 0;
   padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.24);
+  box-sizing: border-box;
 }
 .chat-title .avatar img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 /*--------------------
@@ -100,6 +86,7 @@ Messages
 .highlighted-content-response{
   font-size: medium;
   color:rgb(255, 255, 255);
+  box-sizing: border-box;
 }
 
 .messages {
@@ -109,6 +96,7 @@ Messages
   overflow: auto;
   position: relative;
   width: 100%;
+  box-sizing: border-box;
 }
 .messages .messages-content {
   position: absolute;
@@ -116,6 +104,7 @@ Messages
   left: 0;
   height: 101%;
   width: 100%;
+  box-sizing: border-box;
 }
 .messages .message {
   clear: both;
@@ -129,12 +118,14 @@ Messages
   margin-left: 10px;
   position: relative;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
 }
 .messages .message .timestamp {
   position: absolute;
   bottom: -15px;
   font-size: 9px;
   color: rgba(255, 255, 255, 0.3);
+  box-sizing: border-box;
 }
 .messages .message::before {
   content: "";
@@ -143,6 +134,7 @@ Messages
   border-top: 6px solid var(--user-message-background-color);
   left: 0;
   border-right: 7px solid transparent;
+  box-sizing: border-box;
 }
 .messages .message .avatar {
   position: absolute;
@@ -156,10 +148,12 @@ Messages
   margin: 0;
   padding: 0;
   border: 2px solid rgba(255, 255, 255, 0.24);
+  box-sizing: border-box;
 }
 .messages .message .avatar img {
   width: 100%;
   height: auto;
+  box-sizing: border-box;
 }
 .messages .message.message-personal {
   float: right;
@@ -171,6 +165,7 @@ Messages
   width: auto;
   text-align: left;
   font-size:medium;
+  box-sizing: border-box;
 }
 .messages .message.message-personal::before {
   left: auto;
@@ -179,9 +174,11 @@ Messages
   border-left: 5px solid transparent;
   border-top: 4px solid var(--user-message-background-color);
   bottom: -4px;
+  box-sizing: border-box;
 }
 .messages .message:last-child {
   margin-bottom: 30px;
+  box-sizing: border-box;
 }
 .messages .message.new {
   transform: scale(0);
@@ -192,6 +189,7 @@ Messages
   width: auto;
   background-color:var(--user-message-background-color);
   color: white;
+  box-sizing: border-box;
 }
 .messages .message.loading::before {
   position: absolute;
@@ -209,6 +207,7 @@ Messages
   animation: ball 0.45s cubic-bezier(0, 0, 0.15, 1) alternate infinite;
   border: none;
   animation-delay: 0.15s;
+  box-sizing: border-box;
 }
 .messages .message.loading span {
   display: block;
@@ -216,6 +215,7 @@ Messages
   width: 20px;
   height: 10px;
   position: relative;
+  box-sizing: border-box;
 }
 .messages .message.loading span::before {
   position: absolute;
@@ -232,6 +232,7 @@ Messages
   margin-top: 4px;
   animation: ball 0.45s cubic-bezier(0, 0, 0.15, 1) alternate infinite;
   margin-left: -7px;
+  box-sizing: border-box;
 }
 .messages .message.loading span::after {
   position: absolute;
@@ -249,6 +250,7 @@ Messages
   animation: ball 0.45s cubic-bezier(0, 0, 0.15, 1) alternate infinite;
   margin-left: 7px;
   animation-delay: 0.3s;
+  box-sizing: border-box;
 }
 
 /*--------------------
@@ -260,6 +262,7 @@ Message Box
   background: var(--bottom-background-color);
   padding: 10px;
   position: relative;
+  box-sizing: border-box;
 }
 .message-box .message-input {
   background: none;
@@ -273,10 +276,11 @@ Message Box
   padding: 5px;
   padding-right: 20px;
   width: 80%;
-
+  box-sizing: border-box;
 }
 .message-box textarea:focus:-webkit-placeholder {
   color: transparent;
+  box-sizing: border-box;
 }
 .message-box .message-submit {
   position: absolute;
@@ -294,9 +298,11 @@ Message Box
   outline: none !important;
   transition: background 0.2s ease;
   width: 45px;
+  box-sizing: border-box;
 }
 .message-box .message-submit:hover {
   background: #017234;
+  box-sizing: border-box;
 }
 
 /*--------------------
@@ -305,37 +311,44 @@ Custom Srollbar
 .mCSB_scrollTools {
   margin: 1px -3px 1px 0;
   opacity: 0;
+  box-sizing: border-box;
 }
 
 .mCSB_inside > .mCSB_container {
   margin-right: 0px;
   padding: 0 10px;
+  box-sizing: border-box;
 }
 
 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
   background-color: rgba(0, 0, 0, 0.5) !important;
+  box-sizing: border-box;
 }
 .background-wise-div{
   width: 100vw;
   height: 100vh;
   z-index: 999999;
+  box-sizing: border-box;
 }
 
 .main-wise-chat-div{
   position: fixed;
   right: -400px;
-  bottom: 105px;
+  bottom: 80px;
   width: 400px;
   transition: .4s;
   display: none;
+  box-sizing: border-box;
   /* box-shadow: 5px 5px 10px 0.4px rgb(70, 70, 70);
   border-radius: 20px; */
 }
 .activate-message-content{
   animation: getIntoScreen 0.4s forwards;
+  box-sizing: border-box;
 }
 .deactivate-message-content{
   animation: getOutOfScreen 0.4s forwards;
+  box-sizing: border-box;
 }
 
 .chat-icon{
@@ -343,15 +356,19 @@ Custom Srollbar
   right: 15px;
   bottom: 15px;
   width: 70px;
+  height: 70px;
   transition: .4s;
   border-radius: 20px;
+  box-sizing: border-box;
 }
 .chat-button-activated{
   right: 15px;
   bottom: 15px;
   width: 80px;
+  height: 80px;
   box-shadow: 5px 5px 10px 0.4px rgb(70, 70, 70);
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 /*--------------------
@@ -433,5 +450,3 @@ Bounce
     transform: translateY(-10px);
   }
 }
-
-/*# sourceMappingURL=output.css.map */
