@@ -11,7 +11,7 @@ newDiv.innerHTML = `
           <h1>ALFRED</h1>
           <h2>Active</h2>
           <figure class="avatar">
-            <img src="/images/main-logo.svg" draggable="false"/>
+            <img src="${baseUrl}/images/main-logo.svg" draggable="false"/>
           </figure>
         </div>
         <div class="messages">
@@ -26,7 +26,7 @@ newDiv.innerHTML = `
           </button>
         </div>
       </div>
-      <a href="https://wisesupp.com" class="WiseSup-company">Powered by WiseSupp</a>
+      <a href="${baseUrl}" class="WiseSup-company">Powered by WiseSupp</a>
     </div>
     <div class="chat-icon" id="chat-icon-button">
       <img width="100%" src="/images/main-logo.svg" draggable="false" alt="show chat icon">

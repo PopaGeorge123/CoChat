@@ -5,7 +5,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const cors = require('cors');
+//const cors = require('cors');
 
 require('dotenv').config();
 
@@ -13,7 +13,7 @@ require('dotenv').config();
 const path = require('path');
 
 const app = express();
-app.use(cors());
+//app.use(cors());
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/styles', express.static(path.join(__dirname, 'styles')));
