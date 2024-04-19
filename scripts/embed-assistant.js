@@ -9,8 +9,9 @@ link.href = `${baseUrl}/styles/messageBox.css`; // Replace with the path to your
 document.head.appendChild(link);
 
 var newDiv = document.createElement('div');
+newDiv.style.display = 'none';
 newDiv.innerHTML = `
-  <div class="background-wise-div" id="background-wise-div" style="display:none">
+  <div class="background-wise-div" id="background-wise-div">
     <div class="main-wise-chat-div" id="main-wise-chat-div">
       <div class="chat">
         <div class="chat-title">
@@ -40,7 +41,7 @@ newDiv.innerHTML = `
   </div>
 `;
 document.body.appendChild(newDiv);
-document.getElementById('background-wise-div').style.display = 'block';
+newDiv.style.display = 'block';
 
 var messagesContent = document.getElementById('messages-content');
 var messageInput = document.getElementById('message-input');
