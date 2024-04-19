@@ -48,12 +48,23 @@ router.post('/buildasst', ensureAuthenticated , upload.any(), async (req, res) =
       owner: req.user._id,
       model: assistant.model,
       status : true,
-      enabled : false
+      enabled : false,
+      configuration:{
+        styles:{
+          top:'#3ECD87',
+          background:'#fff',
+          bottom:'#3ECD87',
+          messageBackground:'#10abff',
+          messageTextColor:'#fff'
+        }
+      }
     })
     const result = await DB.addAsstToUser(req.user.id, {
       name: assistant.name,
       id: assistant.id
     });
+
+    console.log("DB RES : ",dbResp)
 
     if(dbResp){
       res.status(200).send({
@@ -64,6 +75,21 @@ router.post('/buildasst', ensureAuthenticated , upload.any(), async (req, res) =
     console.error(err)
   }
 });
+
+router.get('/config',async (req,res)=>{
+  const {asst} = req.query
+
+  try {
+    const response = await DB.getAssistantById(asst);
+    if(response != undefined){
+      res.send({
+        configuration : response.configuration
+      })
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+})
 
 router.get('/query', async (req, res)=>{
   const { prompt } = req.query

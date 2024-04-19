@@ -43,6 +43,21 @@ newDiv.innerHTML = `
 document.body.appendChild(newDiv);
 newDiv.style.display = 'block';
 
+async function updateChatBotStyling(top, background, bottom, messageBackground, messageTextColor) {
+  const styleElement = document.querySelector('link[href$="styles/messageBox.css"]');
+  styleElement.textContent = `
+    :root {
+      --chat-background-color: ${background};
+      --title-background-color: ${top};
+      --bottom-background-color: ${bottom};
+      --message-background-color: ${messageBackground};
+      --message-text-color: ${messageTextColor};
+    }
+  `;
+}
+
+
+
 var messagesContent = document.getElementById('messages-content');
 var messageInput = document.getElementById('message-input');
 var messageSubmit = document.getElementById('message-submit');
@@ -52,6 +67,26 @@ var messageArea = document.querySelector('.messages');
 var ChatButton = document.getElementById('chat-icon-button')
 var MessageBox = document.getElementById('main-wise-chat-div')
 var activated_button = false
+
+async function GetAsstConfig(){
+  try {
+    const response = await fetch(`${baseUrl}/data/config?asst=${asstId}`,{mode: 'cors'});
+    const json = await response.json();
+    const styles = json.configuration.styles
+    console.table(styles)
+    await updateChatBotStyling(
+      styles.top,
+      'green',
+      styles.bottom,
+      styles.messageBackground,
+      'white'
+    )
+    
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+GetAsstConfig()
 
 function updateScrollbar() {
   setTimeout(() => {

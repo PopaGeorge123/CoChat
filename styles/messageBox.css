@@ -1,9 +1,13 @@
-:root{
+/* :root{
   --chat-background-color:#fff;
   --title-background-color:#3ECD87;
   --bottom-background-color:#3ECD87;
   --assistan-response-color:black;
-  --user-message-background-color:rgb(16, 171, 255);
+  --user-message-background-color:#10abff;
+} */
+
+:root{
+  
 }
 
 .WiseSup-company{

@@ -41,6 +41,30 @@ const AssistantSchema = new mongoose.Schema({
     enabled:{
         type:Boolean,
         required:true
+    },
+    configuration:{
+        styles: {
+            top: {
+              type: String,
+              required: true
+            },
+            background: {
+              type: String,
+              required: true
+            },
+            bottom: {
+              type: String,
+              required: true
+            },
+            messageBackground: {
+              type: String,
+              required: true
+            },
+            messageTextColor: {
+              type: String,
+              required: true
+            }
+          }
     }
 });
 
