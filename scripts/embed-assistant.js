@@ -103,7 +103,7 @@ async function insertMessage() {
   displayLoadingMsg();
 
   try {
-    const response = await fetch(`${baseUrl}/data/query?prompt=${prompt}&asst=${asstId}`);
+    const response = await fetch(`${baseUrl}/data/query?prompt=${prompt}&asst=${asstId}`,{mode: 'cors'});
     const json = await response.json();
     const res = json.asst_resp;
     console.log("RESP : ",res)
