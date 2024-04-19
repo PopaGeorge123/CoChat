@@ -2,9 +2,15 @@
 const asstId = document.currentScript.getAttribute('assistant');
 const baseUrl = document.currentScript.getAttribute('baseUrl')
 
+var link = document.createElement('link');
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = `${baseUrl}/styles/messageBox.css`; // Replace with the path to your CSS file
+document.head.appendChild(link);
+
 var newDiv = document.createElement('div');
 newDiv.innerHTML = `
-  <div class="background-wise-div">
+  <div class="background-wise-div" id="background-wise-div" style="display:none">
     <div class="main-wise-chat-div" id="main-wise-chat-div">
       <div class="chat">
         <div class="chat-title">
@@ -34,15 +40,7 @@ newDiv.innerHTML = `
   </div>
 `;
 document.body.appendChild(newDiv);
-
-
-var link = document.createElement('link');
-link.rel = 'stylesheet';
-link.type = 'text/css';
-link.href = `${baseUrl}/styles/messageBox.css`; // Replace with the path to your CSS file
-
-document.head.appendChild(link);
-
+document.getElementById('background-wise-div').style.display = 'block';
 
 var messagesContent = document.getElementById('messages-content');
 var messageInput = document.getElementById('message-input');
