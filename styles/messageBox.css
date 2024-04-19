@@ -1,8 +1,19 @@
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+
+
+:root{
+  --chat-background-color:#fff;
+  --title-background-color:#3ECD87;
+  --bottom-background-color:#3ECD87;
+  --assistan-response-color:black;
+  --user-message-background-color:rgb(16, 171, 255);
+}
+
+.WiseSup-company{
+  font-size: xx-small;
+  margin-left: 10px;
+  padding: 0;
+  text-decoration: none;
 }
 
 html,
@@ -43,7 +54,7 @@ Chat Title
   flex: 0 1 55px;
   position: relative;
   z-index: 2;
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--title-background-color);
   color: #fff;
   text-transform: uppercase;
   text-align: left;
@@ -90,7 +101,8 @@ Messages
 
 .messages {
   flex: 1 1 auto;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgb(0, 0, 0);
+  background-color: var(--chat-background-color);
   overflow: auto;
   position: relative;
   width: 100%;
@@ -125,7 +137,7 @@ Messages
   content: "";
   position: absolute;
   bottom: -6px;
-  border-top: 6px solid rgba(0, 0, 0, 0.3);
+  border-top: 6px solid var(--user-message-background-color);
   left: 0;
   border-right: 7px solid transparent;
 }
@@ -150,7 +162,6 @@ Messages
   float: right;
   color: #fff;
   text-align: right;
-  background: #34BB78;
   border-radius: 10px 10px 0 10px;
   margin-right: 10px;
   max-width: 80%;
@@ -163,7 +174,7 @@ Messages
   right: 0;
   border-right: none;
   border-left: 5px solid transparent;
-  border-top: 4px solid #34BB78;
+  border-top: 4px solid var(--user-message-background-color);
   bottom: -4px;
 }
 .messages .message:last-child {
@@ -176,6 +187,8 @@ Messages
   font-size: medium;
   max-width: 75%;
   width: auto;
+  background-color:var(--user-message-background-color);
+  color: white;
 }
 .messages .message.loading::before {
   position: absolute;
@@ -187,7 +200,7 @@ Messages
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--user-message-background-color);
   z-index: 2;
   margin-top: 4px;
   animation: ball 0.45s cubic-bezier(0, 0, 0.15, 1) alternate infinite;
@@ -211,7 +224,7 @@ Messages
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--user-message-background-color);
   z-index: 2;
   margin-top: 4px;
   animation: ball 0.45s cubic-bezier(0, 0, 0.15, 1) alternate infinite;
@@ -227,7 +240,7 @@ Messages
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--user-message-background-color);
   z-index: 2;
   margin-top: 4px;
   animation: ball 0.45s cubic-bezier(0, 0, 0.15, 1) alternate infinite;
@@ -241,7 +254,7 @@ Message Box
 .message-box {
   flex: 0 1 40px;
   width: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--bottom-background-color);
   padding: 10px;
   position: relative;
 }
@@ -250,7 +263,7 @@ Message Box
   border: none;
   outline: none !important;
   resize: none;
-  color: rgba(255, 255, 255, 0.7);
+  color: white;
   font-size:medium;
   height: 40px;
   margin: 0;
@@ -269,7 +282,7 @@ Message Box
   right: 10px;
   color: #fff;
   border: none;
-  background: #248A52;
+  background: #2df687;
   font-size: 10px;
   text-transform: uppercase;
   line-height: 1;
@@ -280,7 +293,7 @@ Message Box
   width: 45px;
 }
 .message-box .message-submit:hover {
-  background: #1D7745;
+  background: #017234;
 }
 
 /*--------------------
@@ -326,14 +339,14 @@ Custom Srollbar
   position: fixed;
   right: 15px;
   bottom: 15px;
-  width: 80px;
+  width: 70px;
   transition: .4s;
   border-radius: 20px;
 }
 .chat-button-activated{
-  right: 10px;
-  bottom: 10px;
-  width: 90px;
+  right: 15px;
+  bottom: 15px;
+  width: 80px;
   box-shadow: 5px 5px 10px 0.4px rgb(70, 70, 70);
   overflow: hidden;
 }

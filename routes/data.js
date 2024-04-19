@@ -81,13 +81,13 @@ router.get('/query', async (req, res)=>{
     res.send(400)
   }else{
     console.log("COOKIE : ",chatCookie)
-    const assistant_response = await aiMngm.askAsst(chatCookie , asst , prompt)
-    console.log("RESP : ",assistant_response)
+    //const assistant_response = await aiMngm.askAsst(chatCookie , asst , prompt)
+    //console.log("RESP : ",assistant_response)
     // Test Response
-    // const assistant_response = [
-    //    'Hmm, I am not sure. Tell me something new. I really want to hear that from you!'
-    // ]
-    
+    const assistant_response = [
+       'Hmm, I am not sure. Tell me something new. I really want to hear that from you!'
+    ]
+    /*
     const responseArray = assistant_response.split('\n');
     const processedArray = await Promise.all(responseArray.map(async (element) => {
       let responseText = element;
@@ -98,9 +98,9 @@ router.get('/query', async (req, res)=>{
       return responseText;
     }));
     const processedResponse = processedArray.join('\n');
-
+    */
     res.json({
-      asst_resp : processedResponse
+      asst_resp : assistant_response
     })
   }
 })

@@ -22,6 +22,7 @@ newDiv.innerHTML = `
           </button>
         </div>
       </div>
+      <a href="https://wisesupp.com" class="WiseSup-company">Powered by WiseSupp</a>
     </div>
     <div class="chat-icon" id="chat-icon-button">
       <img width="100%" src="/images/main-logo.svg" draggable="false" alt="show chat icon">
@@ -29,6 +30,14 @@ newDiv.innerHTML = `
   </div>
 `;
 document.body.appendChild(newDiv);
+
+var link = document.createElement('link');
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = '/styles/messageBox.css'; // Replace with the path to your CSS file
+
+document.head.appendChild(link);
+
 
 var messagesContent = document.getElementById('messages-content');
 var messageInput = document.getElementById('message-input');
@@ -39,7 +48,9 @@ var messageArea = document.querySelector('.messages');
 var ChatButton = document.getElementById('chat-icon-button')
 var MessageBox = document.getElementById('main-wise-chat-div')
 var activated_button = false
-const asstId = window.assistantConfig.assistant;
+
+const asstId = document.currentScript.getAttribute('assistant');
+const baseUrl = document.currentScript.getAttribute('baseUrl')
 
 function updateScrollbar() {
   setTimeout(() => {
@@ -53,7 +64,7 @@ function updateScrollbar() {
 ChatButton.addEventListener('click',function(){
     if(activated_button){ //hide chat
         ChatButton.classList.remove('chat-button-activated') 
-
+        
         MessageBox.classList.add('deactivate-message-content')
         MessageBox.classList.remove('activate-message-content')
         setTimeout(function(){
@@ -90,7 +101,7 @@ async function insertMessage() {
   displayLoadingMsg();
 
   try {
-    const response = await fetch(`http://localhost:5000/data/query?prompt=${prompt}&asst=${asstId}`);
+    const response = await fetch(`${baseUrl}/data/query?prompt=${prompt}&asst=${asstId}`);
     const json = await response.json();
     const res = json.asst_resp;
     console.log("RESP : ",res)
