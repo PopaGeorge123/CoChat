@@ -1,3 +1,7 @@
+//IMP VARIABLES
+const asstId = document.currentScript.getAttribute('assistant');
+const baseUrl = document.currentScript.getAttribute('baseUrl')
+
 var newDiv = document.createElement('div');
 newDiv.innerHTML = `
   <div class="background-wise-div">
@@ -31,6 +35,7 @@ newDiv.innerHTML = `
 `;
 document.body.appendChild(newDiv);
 
+
 var link = document.createElement('link');
 link.rel = 'stylesheet';
 link.type = 'text/css';
@@ -48,9 +53,6 @@ var messageArea = document.querySelector('.messages');
 var ChatButton = document.getElementById('chat-icon-button')
 var MessageBox = document.getElementById('main-wise-chat-div')
 var activated_button = false
-
-const asstId = document.currentScript.getAttribute('assistant');
-const baseUrl = document.currentScript.getAttribute('baseUrl')
 
 function updateScrollbar() {
   setTimeout(() => {
