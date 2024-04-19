@@ -18,7 +18,7 @@ newDiv.innerHTML = `
           <h1>ALFRED</h1>
           <h2>Active</h2>
           <figure class="avatar">
-            <img src="${baseUrl}/images/main-logo.svg" draggable="false"/>
+            <img src="/images/main-logo.svg" draggable="false"/>
           </figure>
         </div>
         <div class="messages">
