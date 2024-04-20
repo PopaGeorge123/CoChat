@@ -43,18 +43,15 @@ newDiv.innerHTML = `
 document.body.appendChild(newDiv);
 newDiv.style.display = 'block';
 
-async function updateChatBotStyling(top, background, bottom, messageBackground, messageTextColor) {
-  const styleElement = document.querySelector('link[href$="styles/messageBox.css"]');
-  styleElement.textContent = `
-    :root {
-      --chat-background-color: ${background};
-      --title-background-color: ${top};
-      --bottom-background-color: ${bottom};
-      --message-background-color: ${messageBackground};
-      --message-text-color: ${messageTextColor};
-    }
-  `;
+function updateChatBotStyling(top, background, bottom, messageBackground, messageTextColor) {
+  const root = document.documentElement;
+  root.style.setProperty('--chat-background-color', background);
+  root.style.setProperty('--title-background-color', top);
+  root.style.setProperty('--bottom-background-color', bottom);
+  root.style.setProperty('--message-background-color', messageBackground);
+  root.style.setProperty('--message-text-color', messageTextColor);
 }
+
 
 
 
@@ -76,7 +73,7 @@ async function GetAsstConfig(){
     console.table(styles)
     await updateChatBotStyling(
       styles.top,
-      'green',
+      styles.background,
       styles.bottom,
       styles.messageBackground,
       'white'
