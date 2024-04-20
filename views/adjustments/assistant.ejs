@@ -12,7 +12,6 @@
     p{
       text-align: left;
       margin: 0;
-      
     }
   </style>
 
@@ -93,12 +92,10 @@
   </div>
 </div>
 
-<script>
-  window.variables = {
-    asstId: "<%= data.id %>"
-  };
-</script>
-
-<script src="/scripts/chatBox.js"></script>
+<script 
+  asstId="<%= data.id %>" 
+  src="/scripts/chatBox.js"
+  baseUrl = 'http://localhost:5000'
+  ></script>
 </body>
 </html>

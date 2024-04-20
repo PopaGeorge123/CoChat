@@ -1,10 +1,52 @@
+//IMP VARIABLES
+const asstId = document.currentScript.getAttribute('assistant');
+const baseUrl = document.currentScript.getAttribute('baseUrl');
+
+// var link = document.createElement('link');
+// link.rel = 'stylesheet';
+// link.type = 'text/css';
+// link.href = `${baseUrl}/styles/messageBox.css`;
+// document.head.appendChild(link);
+
+function updateChatBotStyling(top, background, bottom, messageBackground, messageTextColor) {
+  const root = document.documentElement;
+  root.style.setProperty('--chat-background-color', background);
+  root.style.setProperty('--title-background-color', top);
+  root.style.setProperty('--bottom-background-color', bottom);
+  root.style.setProperty('--user-message-background-color', messageBackground);
+  root.style.setProperty('--message-text-color', messageTextColor);
+}
+
 var messagesContent = document.getElementById('messages-content');
 var messageInput = document.getElementById('message-input');
 var messageSubmit = document.getElementById('message-submit');
 var windowEvent = window.addEventListener;
 var messageArea = document.querySelector('.messages');
 
-const asstId = window.variables.asstId;
+var ChatButton = document.getElementById('chat-icon-button')
+var MessageBox = document.getElementById('main-wise-chat-div')
+var activated_button = false
+
+async function GetAsstConfig(){
+  try {
+    const response = await fetch(`${baseUrl}/data/config?asst=${asstId}`,{mode: 'cors'});
+    const json = await response.json();
+
+    const styles = json.configuration.styles
+    console.table(styles)
+    updateChatBotStyling(
+      styles.top,
+      styles.background,
+      styles.bottom,
+      styles.messageBackground,
+      styles.messageTextColor
+    )
+    
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+GetAsstConfig()
 
 function updateScrollbar() {
   setTimeout(() => {
@@ -31,7 +73,7 @@ async function insertMessage() {
   displayLoadingMsg();
 
   try {
-    const response = await fetch(`http://localhost:5000/data/query?prompt=${prompt}&asst=${asstId}`);
+    const response = await fetch(`${baseUrl}/data/query?prompt=${prompt}&asst=${asstId}`,{mode: 'cors'});
     const json = await response.json();
     const res = json.asst_resp;
     console.log("RESP : ",res)

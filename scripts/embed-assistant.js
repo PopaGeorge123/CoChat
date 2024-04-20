@@ -1,6 +1,6 @@
 //IMP VARIABLES
 const asstId = document.currentScript.getAttribute('assistant');
-const baseUrl = document.currentScript.getAttribute('baseUrl')
+const baseUrl = document.currentScript.getAttribute('baseUrl');
 
 var link = document.createElement('link');
 link.rel = 'stylesheet';
@@ -48,7 +48,7 @@ function updateChatBotStyling(top, background, bottom, messageBackground, messag
   root.style.setProperty('--chat-background-color', background);
   root.style.setProperty('--title-background-color', top);
   root.style.setProperty('--bottom-background-color', bottom);
-  root.style.setProperty('--message-background-color', messageBackground);
+  root.style.setProperty('--user-message-background-color', messageBackground);
   root.style.setProperty('--message-text-color', messageTextColor);
 }
 
@@ -69,14 +69,15 @@ async function GetAsstConfig(){
   try {
     const response = await fetch(`${baseUrl}/data/config?asst=${asstId}`,{mode: 'cors'});
     const json = await response.json();
+
     const styles = json.configuration.styles
     console.table(styles)
-    await updateChatBotStyling(
+    updateChatBotStyling(
       styles.top,
       styles.background,
       styles.bottom,
       styles.messageBackground,
-      'white'
+      styles.messageTextColor
     )
     
   } catch (error) {

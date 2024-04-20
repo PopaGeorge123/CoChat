@@ -2,8 +2,8 @@
   --chat-background-color:#fff;
   --title-background-color:#3ECD87;
   --bottom-background-color:#3ECD87;
-  --assistan-response-color:black;
   --user-message-background-color:#10abff;
+  --message-text-color:white;
 } */
 
 :root{
@@ -93,10 +93,11 @@ Messages
   box-sizing: border-box;
 }
 
+/* assistantTextColor */
 .messages {
   flex: 1 1 auto;
-  color: rgb(0, 0, 0);
   background-color: var(--chat-background-color);
+  color: var(--message-text-color);
   overflow: auto;
   position: relative;
   width: 100%;
@@ -159,9 +160,10 @@ Messages
   height: auto;
   box-sizing: border-box;
 }
+/* userTextColor */
 .messages .message.message-personal {
   float: right;
-  color: #fff;
+  color: var(--message-text-color);
   text-align: right;
   border-radius: 10px 10px 0 10px;
   margin-right: 10px;
@@ -192,7 +194,7 @@ Messages
   max-width: 75%;
   width: auto;
   background-color:var(--user-message-background-color);
-  color: white;
+  color: var();
   box-sizing: border-box;
 }
 .messages .message.loading::before {
