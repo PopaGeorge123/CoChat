@@ -14,7 +14,7 @@ router.get('/:id/', ensureAuthenticated, async (req, res) => {
         //const AIassistant = await AI.getAssistantById(assistantId)//
         const DBassistant = await DB.getAssistantById(assistantId)//name,model,status,enabled
         
-        console.log(DBassistant)
+        console.log("DBASST  :  ",DBassistant)
         if(user.id === DBassistant.owner){
             res.render('adjustments/assistant',{
                 data: DBassistant

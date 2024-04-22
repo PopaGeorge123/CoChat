@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/styles/unusefull/assistant.css">
-  <link rel="stylesheet" href="/styles/messageBox.css">
   <title>Document</title>
 </head>
 <body>
@@ -39,7 +38,15 @@
 
 <div class="container">
     <div class="row mt-3">
-    <div class="col-12"><h2><%= data.name %></h2></div>
+    <div class="col-12">
+      <h2>
+        <% if (data.name.length > 20) { %>
+          <%= data.name.substring(0, 20) + '...' %>
+        <% } else { %>
+          <%= data.name %>
+        <% } %>
+      </h2>
+    </div>
   </div>
   <div class="row">
     <div class="col-2 col-md-1" style="width: 100px; "></div>
@@ -70,7 +77,13 @@
           <div>
             <div class="chat">
               <div class="chat-title">
-                <h1><%= data.name %></h1>
+                <h1>
+                  <% if (data.name.length > 20) { %>
+                    <%= data.name.substring(0, 20) + '...' %>
+                  <% } else { %>
+                    <%= data.name %>
+                  <% } %>
+                </h1>
                 <h2>Active</h2>
                 <figure class="avatar">
                   <img src="/images/main-logo.svg" /></figure>
@@ -93,9 +106,16 @@
 </div>
 
 <script 
-  asstId="<%= data.id %>" 
+  assistant="<%= data._id %>" 
   src="/scripts/chatBox.js"
-  baseUrl = 'http://localhost:5000'
-  ></script>
+  baseUrl="http://localhost:5000"
+></script>
+
+<!-- <script 
+    src="http://localhost:5000/scripts/embed-assistant.js" 
+    baseUrl = 'http://localhost:5000'
+    assistant="asst_eAyvyQu8T8qKwyh1dZkVQQUs" 
+    defer>
+  </script> -->
 </body>
 </html>
