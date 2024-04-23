@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/styles/unusefull/assistant.css">
-  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="/styles/createchatbot.css">
 </head>
 <body>
 
@@ -23,20 +23,80 @@
 </header>
 
 <div class="scrollmenu" style="margin-top: 70px;">
-  <a id="menu-1" href="#">My Assistant</a>
-  <a id="menu-2" href="#news">Dashboard</a>
+  <a href="/myassistants">
+    <svg width="20" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#000000" d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"></path><path fill="#000000" d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"></path></g></svg>
+  </a>
+  <a id="menu-1" href="/data/assistant/<%= data %>">My Assistant</a>
+  <a id="menu-2" style="color: black;border-bottom: solid 2px #3ECD87;font-weight: bold;">Dashboard</a>
   <a id="menu-3" href="#contact">Settings</a>
   <a id="menu-4" href="#about">Sources</a>
-  <a id="menu-5" href="#about">Embed on site</a>
+  <a id="menu-1" href="/data/assistant/<%= data %>/embed">Embed on site</a>
 </div> 
 
-        
+<div class="background-div">
+  <div class="text-div" style="margin-top: 40px;">
+      <h2>Your assistant stats</h2>
+  </div>
 
-    <script>
-        const Menus = ['menu-1','menu-2','menu-3','menu-4','menu-5']
+  <div class="data-for-bot-div">
+      <div class="data-type-select">
+          <div onclick="setOption(1)" id="chat_logs_data" class="import-option-div">
+            <svg class="option-icon" id="aa" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2 11.9997C2 7.28562 2 4.9286 3.46447 3.46413C4.70529 2.22331 6.58687 2.03382 10 2.00488M22 11.9997C22 7.28562 22 4.9286 20.5355 3.46413C19.2947 2.22331 17.4131 2.03382 14 2.00488" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path> <path d="M10 22C7.19974 22 5.79961 22 4.73005 21.455C3.78924 20.9757 3.02433 20.2108 2.54497 19.27C2 18.2004 2 16.8003 2 14C2 11.1997 2 9.79961 2.54497 8.73005C3.02433 7.78924 3.78924 7.02433 4.73005 6.54497C5.79961 6 7.19974 6 10 6H14C16.8003 6 18.2004 6 19.27 6.54497C20.2108 7.02433 20.9757 7.78924 21.455 8.73005C22 9.79961 22 11.1997 22 14C22 16.8003 22 18.2004 21.455 19.27C20.9757 20.2108 20.2108 20.9757 19.27 21.455C18.2004 22 16.8003 22 14 22" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path> <path d="M12 17L12 11M12 11L14.5 13.5M12 11L9.5 13.5" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g>
+            </svg>
+            <svg class="option-icon" id="bb" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2 11.9997C2 7.28562 2 4.9286 3.46447 3.46413C4.70529 2.22331 6.58687 2.03382 10 2.00488M22 11.9997C22 7.28562 22 4.9286 20.5355 3.46413C19.2947 2.22331 17.4131 2.03382 14 2.00488" stroke="#3ECD87" stroke-width="1.5" stroke-linecap="round"></path> <path d="M10 22C7.19974 22 5.79961 22 4.73005 21.455C3.78924 20.9757 3.02433 20.2108 2.54497 19.27C2 18.2004 2 16.8003 2 14C2 11.1997 2 9.79961 2.54497 8.73005C3.02433 7.78924 3.78924 7.02433 4.73005 6.54497C5.79961 6 7.19974 6 10 6H14C16.8003 6 18.2004 6 19.27 6.54497C20.2108 7.02433 20.9757 7.78924 21.455 8.73005C22 9.79961 22 11.1997 22 14C22 16.8003 22 18.2004 21.455 19.27C20.9757 20.2108 20.2108 20.9757 19.27 21.455C18.2004 22 16.8003 22 14 22" stroke="#3ECD87" stroke-width="1.5" stroke-linecap="round"></path> <path d="M12 17L12 11M12 11L14.5 13.5M12 11L9.5 13.5" stroke="#3ECD87" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g>
+            </svg>Chats Logs
+          </div>
+          <div onclick="setOption(2)" id="new_customers_data" class="import-option-div">
+            <svg class="option-icon" id="cc" width="20" fill="#000000" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>plus-user</title> <path d="M2.016 28q0 0.832 0.576 1.44t1.408 0.576h14.016v-0.352q-1.792-0.608-2.912-2.176t-1.088-3.488q0-2.016 1.184-3.584t3.072-2.112q0.384-1.216 1.216-2.176t2.016-1.504q0.512-1.376 0.512-2.624v-1.984q0-3.328-2.368-5.664t-5.632-2.336-5.664 2.336-2.336 5.664v1.984q0 2.112 1.024 3.904t2.784 2.912q-1.504 0.544-2.912 1.504t-2.496 2.144-1.76 2.624-0.64 2.912zM18.016 24q0 0.832 0.576 1.44t1.408 0.576h2.016v1.984q0 0.864 0.576 1.44t1.408 0.576 1.408-0.576 0.608-1.44v-1.984h1.984q0.832 0 1.408-0.576t0.608-1.44-0.608-1.408-1.408-0.576h-1.984v-2.016q0-0.832-0.608-1.408t-1.408-0.576-1.408 0.576-0.576 1.408v2.016h-2.016q-0.832 0-1.408 0.576t-0.576 1.408z"></path> </g>
+            </svg>
+            <svg class="option-icon" id="dd" width="20" fill="#3ECD87" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>plus-user</title> <path d="M2.016 28q0 0.832 0.576 1.44t1.408 0.576h14.016v-0.352q-1.792-0.608-2.912-2.176t-1.088-3.488q0-2.016 1.184-3.584t3.072-2.112q0.384-1.216 1.216-2.176t2.016-1.504q0.512-1.376 0.512-2.624v-1.984q0-3.328-2.368-5.664t-5.632-2.336-5.664 2.336-2.336 5.664v1.984q0 2.112 1.024 3.904t2.784 2.912q-1.504 0.544-2.912 1.504t-2.496 2.144-1.76 2.624-0.64 2.912zM18.016 24q0 0.832 0.576 1.44t1.408 0.576h2.016v1.984q0 0.864 0.576 1.44t1.408 0.576 1.408-0.576 0.608-1.44v-1.984h1.984q0.832 0 1.408-0.576t0.608-1.44-0.608-1.408-1.408-0.576h-1.984v-2.016q0-0.832-0.608-1.408t-1.408-0.576-1.408 0.576-0.576 1.408v2.016h-2.016q-0.832 0-1.408 0.576t-0.576 1.408z"></path> </g>
+            </svg>New Customers
+          </div>
+          <div onclick="setOption(3)" id="website_views_data" class="import-option-div">
+            <svg class="option-icon" id="ee" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M7.99998 3H8.99998C7.04998 8.84 7.04998 15.16 8.99998 21H7.99998" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M15 3C15.97 5.92 16.46 8.96 16.46 12" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M3 16V15C5.92 15.97 8.96 16.46 12 16.46" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M3 9.0001C8.84 7.0501 15.16 7.0501 21 9.0001" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M18.2 21.4C19.9673 21.4 21.4 19.9673 21.4 18.2C21.4 16.4327 19.9673 15 18.2 15C16.4327 15 15 16.4327 15 18.2C15 19.9673 16.4327 21.4 18.2 21.4Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M22 22L21 21" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g>
+            </svg>  
+            <svg class="option-icon" id="ff" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22" stroke="#3ECD87" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M7.99998 3H8.99998C7.04998 8.84 7.04998 15.16 8.99998 21H7.99998" stroke="#3ECD87" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M15 3C15.97 5.92 16.46 8.96 16.46 12" stroke="#3ECD87" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M3 16V15C5.92 15.97 8.96 16.46 12 16.46" stroke="#3ECD87" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M3 9.0001C8.84 7.0501 15.16 7.0501 21 9.0001" stroke="#3ECD87" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M18.2 21.4C19.9673 21.4 21.4 19.9673 21.4 18.2C21.4 16.4327 19.9673 15 18.2 15C16.4327 15 15 16.4327 15 18.2C15 19.9673 16.4327 21.4 18.2 21.4Z" stroke="#3ECD87" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M22 22L21 21" stroke="#3ECD87" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g>
+            </svg>Website Views
+          </div>
+         
+      </div>
+      <div class="main-check-div">
+          <div id="chat_logs_sub" class="input-data-type">
+              <h2 class="type-select-h1">Chats Logs</h2>
+              
+              <div class="drop-zone" id="drop-zone">
+                  <svg height="80" fill="#3ECD87" viewBox="0 -1.5 35 35" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>upload1</title> <path d="M29.426 15.535c0 0 0.649-8.743-7.361-9.74-6.865-0.701-8.955 5.679-8.955 5.679s-2.067-1.988-4.872-0.364c-2.511 1.55-2.067 4.388-2.067 4.388s-5.576 1.084-5.576 6.768c0.124 5.677 6.054 5.734 6.054 5.734h9.351v-6h-3l5-5 5 5h-3v6h8.467c0 0 5.52 0.006 6.295-5.395 0.369-5.906-5.336-7.070-5.336-7.070z"></path> </g>
+                  </svg>
+                  <span class="drop-zone__prompt">Drop files here</span>or<br>
+                  <input type="file" class="drop-zone__input" id="fileInput" accept=".pdf, .doc, .docx, .txt">
+                  <p style="margin: 10px; color: rgb(114, 114, 114);">Supported File Types: .pdf, .doc, .docx, .txt</p>
+              </div>
 
+              <div class="uploaded-files-div" id="uploaded-files-div-id">
+                  
 
+              </div>
 
-    </script>
+          </div>
+          <div id="new_customers_sub" class="input-data-type" >
+              <h2 class="type-select-h1">New Customers</h2>
+              <div class="textarea-div">
+                  <textarea name="" id="textarea-input" ></textarea>
+                  <p id="char-count-text-input">0 characters</p>
+              </div>
+          </div>
+          <div id="website_views_sub" class="input-data-type">
+              <h2 class="type-select-h1">Website Views</h2>
+              <h4 style="text-align: center;">Coming soon!</h4>
+              <h6 style="text-align: center;">Our dedicated team of developers is working tirelessly to enhance your experience, and we're excited to announce that a new feature aimed at improving your experience is currently in development</h6>
+              <br>
+              <h6 style="text-align: center;">This feature will let you use your own website as a souce for the assistant to learn from.</h6>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script src="/scripts/dashboard.js"></script>
+
 </body>
 </html>

@@ -22,8 +22,11 @@
   </ul>
 </header>
   <div class="scrollmenu" style="margin-top: 70px;">
+    <a href="/myassistants">
+      <svg width="20" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#000000" d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"></path><path fill="#000000" d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"></path></g></svg>
+    </a>
     <a id="menu-1" href="/data/assistant/<%= data %>">My Assistant</a>
-    <a id="menu-2" href="#news">Dashboard</a>
+    <a id="menu-1" href="/data/assistant/<%= data %>/dashboard">Dashboard</a>
     <a id="menu-3" href="#contact">Settings</a>
     <a id="menu-4" href="#about">Sources</a>
     <a id="menu-5" style="color: black;border-bottom: solid 2px #3ECD87;font-weight: bold;">Embed on site</a>
@@ -59,7 +62,7 @@
     <h2>Your assistant code</h2>
     <div class="code-box">
       <textarea readonly >
-  //place this code before closing body tag
+  //place this code before closing </body> tag
   
   <script 
     src="https://www.wisesupp.com/scripts/embed-assistant.js" 
@@ -70,15 +73,20 @@
   
       </textarea>
     </div>
-    <button class="btn btn-primary copy-btn" onclick="copyCode()">Copy Code</button>
+    <button id="copy_btn" class="btn btn-primary copy-btn" onclick="copyCode()">Copy Code</button>
   </div>
   
   
   <script>
     function copyCode() {
+      let btn = document.getElementById('copy_btn')
       const textarea = document.querySelector('.code-box textarea');
       textarea.select();
       document.execCommand('copy');
-      alert('Code copied to clipboard!');
+      btn.innerText = "Text Copied"
+
+      setTimeout(function(){
+        btn.innerText = "Copy Code"
+      },1000)
     }
   </script>
