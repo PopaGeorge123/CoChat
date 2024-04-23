@@ -4,6 +4,8 @@ let inputTypes = ['files-input-type','text-input-type','website-input-type','que
 let selectIcons = ['bb','dd','ff','hh']
 let unselectIcons = ['aa','cc','ee','gg']
 
+let chosed_option = 1
+
 let UserSelectedFiles = []
 let uploadedFilesDiv = document.getElementById('uploaded-files-div-id')
 
@@ -52,11 +54,11 @@ function deleteUploadedFile(index){
   updateSelectedFiles()
 }
 
-clearInputArea(1)
+clearInputArea(chosed_option)
 
 function setOption(optionNumber){
-    console.log(importOption[optionNumber-1])
-    
+  console.log("Chosed Option : ",chosed_option)
+    chosed_option = optionNumber
     clearInputArea()
     clearInputArea(optionNumber)
 }
@@ -158,37 +160,49 @@ dropZone.addEventListener('drop', (e) => {
 
 
 async function executeCreateBot(){
-  
-      if (UserSelectedFiles.length === 0) {
-        alert('Please select at least one file.');
-        return;
-      }
 
-      const formData = new FormData();
-      runWorkingAnim()
-
-      for (let i = 0; i < UserSelectedFiles.length; i++) {
-        formData.append('files', UserSelectedFiles[i]);
-      }
-      //create assistant route, i will modify it later
-      try {
-        const response = await fetch('/data/buildasst', {
-            method: 'POST',
-            body: formData
-        });
-        
-
-        if (response.ok) {
-            const responseData = await response.json();
-            location.href = `/data/assistant/${responseData.botId}`
-        } else {
-            // Handle HTTP error status
-            console.error('File upload failed');
-            return null; // Or return an error message
+  switch(chosed_option){
+    case 1 : 
+        if (UserSelectedFiles.length === 0) {
+          alert('Please select at least one file.');
+          return;
         }
-    } catch (error) {
-        // Handle network or other errors
-        console.error('Error uploading file:', error);
-        return null; // Or return an error message
-    }
+        const formData = new FormData();
+        runWorkingAnim()
+
+        for (let i = 0; i < UserSelectedFiles.length; i++) {
+          formData.append('files', UserSelectedFiles[i]);
+        }
+        //create assistant route, i will modify it later
+        try {
+          const response = await fetch('/data/buildasst', {
+              method: 'POST',
+              body: formData
+          });
+          
+
+          if (response.ok) {
+              const responseData = await response.json();
+              location.href = `/data/assistant/${responseData.botId}`
+          } else {
+              // Handle HTTP error status
+              console.error('File upload failed');
+              return null; // Or return an error message
+          }
+      } catch (error) {
+          // Handle network or other errors
+          console.error('Error uploading file:', error);
+          return null; // Or return an error message
+      }
+    break;
+    case 2 : 
+
+    break;
+    case 3 : 
+
+    break;
+    case 4 : 
+
+    break;
+  }
 }
