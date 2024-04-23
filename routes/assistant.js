@@ -37,7 +37,14 @@ router.get('/:id/settings', ensureAuthenticated, async (req, res) => {
 
     console.log('Assistant ID:', assistantId);
     res.send(`Settings for assistant with ID ${assistantId}`);
-  });
+});
+
+router.get('/:id/embed', ensureAuthenticated, async (req, res) => {
+    const assistantId = req.params.id;
+    res.render('adjustments/embed',{
+        data : assistantId
+    })
+});
 
 
 module.exports = router;

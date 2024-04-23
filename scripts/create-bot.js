@@ -173,29 +173,48 @@ async function executeCreateBot(){
         for (let i = 0; i < UserSelectedFiles.length; i++) {
           formData.append('files', UserSelectedFiles[i]);
         }
-        //create assistant route, i will modify it later
         try {
-          const response = await fetch('/data/buildasst', {
+          const response = await fetch('/data/buildasstfile', {
               method: 'POST',
               body: formData
           });
-          
-
           if (response.ok) {
               const responseData = await response.json();
               location.href = `/data/assistant/${responseData.botId}`
           } else {
-              // Handle HTTP error status
-              console.error('File upload failed');
-              return null; // Or return an error message
+            console.error('File upload failed');
+            return null;
           }
       } catch (error) {
-          // Handle network or other errors
           console.error('Error uploading file:', error);
-          return null; // Or return an error message
+          return null; 
       }
     break;
     case 2 : 
+          if (textarea.value.length === 0) {
+            alert('Please write some instructions!');
+            return;
+          }
+          runWorkingAnim()
+          try {
+            const response = await fetch('/data/buildassttext', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ text: textarea.value })
+            });
+            if (response.ok) {
+                const responseData = await response.json();
+                location.href = `/data/assistant/${responseData.botId}`
+            } else {
+              console.error('File upload failed');
+              return null;
+            }
+        } catch (error) {
+            console.error('Error uploading file:', error);
+            return null; 
+        }
 
     break;
     case 3 : 

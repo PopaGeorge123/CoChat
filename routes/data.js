@@ -31,11 +31,11 @@ router.post('/countchars', ensureAuthenticated , upload.single('file') , async (
   console.log(charCount)
 });
 
-router.post('/buildasst', ensureAuthenticated , upload.any(), async (req, res) => {
+router.post('/buildasstfile', ensureAuthenticated , upload.any(), async (req, res) => {
   try{
     const processed_files = []
     const receivedFiles = req.files
-    const createdFilesIds = await aiMngm.uploadFilesToOpenAi(receivedFiles)
+    const createdFilesIds = await aiMngm.uploadFilesToOpenAi(receivedFiles,1)
     const assistant = await aiMngm.createNewAssistant(req.files[0].originalname)
 
     const updatedAssistant = await aiMngm.updatedAssistant(assistant.id,{
@@ -76,43 +76,49 @@ router.post('/buildasst', ensureAuthenticated , upload.any(), async (req, res) =
   }
 });
 
-// router.post('/buildassttext', ensureAuthenticated , upload.any(), async (req, res) => {
-//   try{
-//     const receivedText = req.text
+router.post('/buildassttext', ensureAuthenticated , upload.any(), async (req, res) => {
+  try{
+    const receivedText = req.body.text
+    const createdFilesIds = await aiMngm.uploadFilesToOpenAi(receivedText,2)
+    const assistant = await aiMngm.createNewAssistant(createdFilesIds[0])
+
+    const updatedAssistant = await aiMngm.updatedAssistant(assistant.id,{
+      file_ids: createdFilesIds[1]
+    })
     
-//     const dbResp = await DB.createAssistant({
-//       _id: assistant.id,
-//       name: req.files[0].originalname,
-//       owner: req.user._id,
-//       model: assistant.model,
-//       status : true,
-//       enabled : false,
-//       configuration:{
-//         styles:{
-//           top:'#3ECD87',
-//           background:'#fff',
-//           bottom:'#3ECD87',
-//           messageBackground:'#10abff',
-//           messageTextColor:'#fff'
-//         }
-//       }
-//     })
-//     const result = await DB.addAsstToUser(req.user.id, {
-//       name: assistant.name,
-//       id: assistant.id
-//     });
+    const dbResp = await DB.createAssistant({
+      _id: assistant.id,
+      name: createdFilesIds[0], //name
+      owner: req.user._id,
+      model: assistant.model,
+      status : true,
+      enabled : false,
+      configuration:{
+        styles:{
+          top:'#3ECD87',
+          background:'#fff',
+          bottom:'#3ECD87',
+          messageBackground:'#10abff',
+          messageTextColor:'#fff'
+        }
+      }
+    })
+    const result = await DB.addAsstToUser(req.user.id, {
+      name: assistant.name,
+      id: assistant.id
+    });
 
-//     console.log("DB RES : ",dbResp)
+    console.log("DB RES : ",dbResp)
 
-//     if(dbResp){
-//       res.status(200).send({
-//       botId : assistant.id
-//     })
-//     }
-//   }catch(err){
-//     console.error(err)
-//   }
-// });
+    if(dbResp){
+      res.status(200).send({
+      botId : assistant.id
+    })
+    }
+  }catch(err){
+    console.error(err)
+  }
+});
 
 router.get('/config',async (req,res)=>{
   const {asst} = req.query

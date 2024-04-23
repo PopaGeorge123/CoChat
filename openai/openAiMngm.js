@@ -64,8 +64,10 @@ async function createNewAssistant(name){
     return myAssistant
 }
 
-async function uploadFilesToOpenAi(files){
-    try{
+async function uploadFilesToOpenAi(files,option){
+  switch (option){
+    case 1:
+      try{
         const filesCreated = await Promise.all(files.map(async (element, index) => {
             const path = await fileHandler.saveFile(element.buffer, element.originalname ,'/tempFiles');
             const createdFile = await createFile(path);
@@ -73,11 +75,24 @@ async function uploadFilesToOpenAi(files){
             return createdFile.id;
         }));
 
-        //console.log(filesCreated);
+        console.log(filesCreated);
         return filesCreated;
-    } catch(err) {
+      } catch(err) {
+          console.error(err);
+      }
+    break;
+    case 2:
+      try{
+        const fileName = `knowledge_${Date.now()}.txt`;
+        const path = await fileHandler.saveFile(files, fileName ,'/tempFiles');
+        const createdFile = await createFile(path);
+        await fileHandler.deleteFile(path);
+        return [fileName , createdFile.id,];
+      }catch(err) {
         console.error(err);
-    }
+      }
+    break;
+  }
 }
 
 async function updatedAssistant(id, data){
